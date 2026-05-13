@@ -1,5 +1,172 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Аль-Уля</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Аль-Уля — Travel Aravia</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/animations.css">
+  <link rel="stylesheet" href="../css/components.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="../index.html" class="header__logo">
+      <img src="../assets/images/logo.svg" alt="Travel Aravia" style="height:48px;width:auto;">
+    </a>
+    <nav class="header__nav">
+      <a href="../tours.html">Туры</a>
+      <a href="../destinations/riyadh.html">Направления</a>
+      <a href="../events.html">Мероприятия</a>
+      <a href="../hotels.html">Отели</a>
+      <a href="../tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="../tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section class="dest-hero" style="position:relative;height:100vh;display:flex;align-items:flex-end;overflow:hidden;">
+  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+    <source src="../assets/videos/al-ula.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(26,15,10,0.95) 0%, rgba(26,15,10,0.3) 60%, transparent 100%);"></div>
+  <div class="container" style="position:relative;z-index:1;padding-bottom:80px;">
+    <p class="section-label">Древние цивилизации</p>
+    <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(48px,7vw,96px);color:#fff;line-height:1.05;margin-bottom:20px;">Аль-Уля</h1>
+    <p style="font-size:18px;color:var(--color-sand);max-width:560px;line-height:1.7;margin-bottom:40px;">Город-музей под открытым небом. Скала Слон, древний город Хегра, зеркальное здание Марайя — место где история оживает.</p>
+    <a href="../tour-builder.html" class="btn-primary">Собрать тур в Аль-Улю</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-label">О месте</p>
+    <h2 class="section-title">Почему Аль-Уля уникальна?</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
+      <div>
+        <p style="font-size:17px;color:var(--color-sand);line-height:1.8;margin-bottom:24px;">Аль-Уля — одно из самых захватывающих мест на Земле. Здесь находятся набатейские гробницы Хегры (Мадаин Салих) — объект наследия ЮНЕСКО, сравнимый с Петрой в Иордании.</p>
+        <p style="font-size:17px;color:var(--color-sand);line-height:1.8;">Скала Слон, зеркальное здание Марайя посреди пустыни, старый город с тысячелетней историей — всё это ждёт вас в Аль-Уле.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="services__card" style="text-align:center;">
+          <div style="font-family:'Cormorant Garant',serif;font-size:48px;color:var(--color-accent);font-weight:700;">200K</div>
+          <div style="color:var(--color-sand);font-size:14px;">лет истории</div>
+        </div>
+        <div class="services__card" style="text-align:center;">
+          <div style="font-family:'Cormorant Garant',serif;font-size:48px;color:var(--color-accent);font-weight:700;">131</div>
+          <div style="color:var(--color-sand);font-size:14px;">гробниц Хегры</div>
+        </div>
+        <div class="services__card" style="text-align:center;">
+          <div style="font-family:'Cormorant Garant',serif;font-size:48px;color:var(--color-accent);font-weight:700;">ЮНЕСКО</div>
+          <div style="color:var(--color-sand);font-size:14px;">наследие</div>
+        </div>
+        <div class="services__card" style="text-align:center;">
+          <div style="font-family:'Cormorant Garant',serif;font-size:48px;color:var(--color-accent);font-weight:700;">3h</div>
+          <div style="color:var(--color-sand);font-size:14px;">от Медины</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(92,45,26,0.08);">
+  <div class="container">
+    <p class="section-label">Что посетить</p>
+    <h2 class="section-title">Главные места Аль-Улы</h2>
+    <div class="services__grid" style="margin-top:48px;">
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        </div>
+        <h3>Скала Слон</h3>
+        <p>Природное чудо — огромная скала в форме слона посреди пустыни. Одно из самых фотографируемых мест Саудовской Аравии.</p>
+      </div>
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Хегра (Мадаин Салих)</h3>
+        <p>Набатейские гробницы I века н.э. — первый объект ЮНЕСКО в Саудовской Аравии. Монументальные фасады высечены прямо в скалах.</p>
+      </div>
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Марайя</h3>
+        <p>Зеркальное здание-концертный зал посреди пустыни. Занесено в Книгу рекордов Гиннесса как самое большое зеркальное здание в мире.</p>
+      </div>
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <h3>Старый город Аль-Уля</h3>
+        <p>Заброшенный древний город с глинобитными домами и узкими улочками. Более 900 домов и 400 магазинов — живая история Аравии.</p>
+      </div>
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3>Зиплайн Сикки</h3>
+        <p>Один из самых длинных зиплайнов в мире — 1,7 км над ущельем. Незабываемые ощущения над древними скалами Аль-Улы.</p>
+      </div>
+      <div class="services__card reveal">
+        <div class="services__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+        </div>
+        <h3>Воздушный шар</h3>
+        <p>Полёт на воздушном шаре над пустынными пейзажами Аль-Улы на рассвете — один из самых романтичных опытов в мире.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align:center;">
+    <p class="section-label">Готовы к поездке?</p>
+    <h2 class="section-title">Организуем ваш тур в Аль-Улю</h2>
+    <p style="color:var(--color-sand);font-size:17px;max-width:500px;margin:0 auto 40px;">Выберите даты, отель и активности — мы возьмём на себя всё остальное.</p>
+    <a href="../tour-builder.html" class="btn-primary" style="font-size:17px;">Собрать тур в Аль-Улю →</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="../assets/images/logo.svg" alt="Travel Aravia" class="footer__logo" style="height:44px;width:auto;">
+        <p>Надёжные проводники по Саудовской Аравии для русскоговорящих путешественников.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Направления</h4>
+        <a href="riyadh.html">Эр-Рияд</a>
+        <a href="jeddah.html">Джидда</a>
+        <a href="al-ula.html">Аль-Уля</a>
+      </div>
+      <div class="footer__links">
+        <h4>Компания</h4>
+        <a href="../tours.html">Туры</a>
+        <a href="../events.html">Мероприятия</a>
+        <a href="../hotels.html">Отели</a>
+        <a href="../tour-builder.html">Собрать тур</a>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://www.instagram.com/travelaravia/" target="_blank">Instagram</a>
+        <a href="https://wa.me/79513894443" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Travel Aravia. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
 </html>
