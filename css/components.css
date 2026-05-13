@@ -203,6 +203,76 @@
   background: linear-gradient(var(--color-accent), transparent);
 }
 
+/* ── Section shared ── */
+.section-label {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--color-sand);
+  line-height: 1.7;
+  max-width: 560px;
+  font-weight: 300;
+}
+
+/* ── Services ── */
+.services__header {
+  margin-bottom: 64px;
+}
+
+.services__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.services__card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(196, 135, 90, 0.2);
+  border-radius: var(--border-radius);
+  padding: 40px 32px;
+  transition: all 0.3s ease;
+}
+
+.services__card:hover {
+  background: rgba(196, 135, 90, 0.08);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
+}
+
+.services__icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.services__card h3 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  color: var(--color-white);
+  margin-bottom: 12px;
+}
+
+.services__card p {
+  font-size: 15px;
+  color: var(--color-sand);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
 @media (max-width: 768px) {
   .hero__title {
     font-size: clamp(36px, 10vw, 56px);
@@ -220,5 +290,13 @@
   .hero__actions .btn-outline {
     width: 100%;
     text-align: center;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    text-align: left;
   }
 }
