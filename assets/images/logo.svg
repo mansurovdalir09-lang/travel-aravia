@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" width="200" height="40">
   <path d="M5 32 Q15 5 28 18 Q38 28 50 8" stroke="#C4875A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <text x="56" y="26" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#FFFFFF">Travel Aravia</text>
+  <text x="56" y="26" font-family="Georgia, serif" font-size="20" font-weight="700" fill="#C4875A">Travel Aravia</text>
 </svg>
