@@ -362,6 +362,10 @@
   transform: scale(1.05);
 }
 
+.destinations__card img.destinations__video {
+  object-fit: cover;
+}
+
 .destinations__overlay {
   position: absolute;
   inset: 0;
