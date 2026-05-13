@@ -162,7 +162,7 @@
 .hero__content {
   position: relative;
   z-index: 1;
-  max-width: 700px;
+  max-width: 600px;
   padding-top: 100px;
 }
 
@@ -177,7 +177,7 @@
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(48px, 7vw, 96px);
+  font-size: clamp(32px, 4.5vw, 64px);
   font-weight: 600;
   line-height: 1.05;
   color: var(--color-white);
