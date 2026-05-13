@@ -1,5 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Главная</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Aravia — Главная</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/logo.jpg" alt="Travel Aravia">
+    </a>
+    <nav class="header__nav">
+      <a href="tours.html">Туры</a>
+      <a href="destinations/riyadh.html">Направления</a>
+      <a href="events.html">Мероприятия</a>
+      <a href="hotels.html">Отели</a>
+      <a href="tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-menu__nav">
+    <a href="tours.html">Туры</a>
+    <a href="destinations/riyadh.html">Направления</a>
+    <a href="events.html">Мероприятия</a>
+    <a href="hotels.html">Отели</a>
+    <a href="tour-builder.html">Собрать тур</a>
+  </nav>
+</div>
+
+<script src="js/main.js"></script>
+</body>
 </html>
