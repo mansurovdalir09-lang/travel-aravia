@@ -18,6 +18,21 @@ mobileMenu.querySelectorAll('a').forEach(link => {
   });
 });
 
+function toggleSound() {
+  const video = document.querySelector('.hero__video');
+  const btn = document.getElementById('soundBtn');
+  const text = document.getElementById('soundText');
+  if (video.muted) {
+    video.muted = false;
+    text.textContent = 'Выключить звук';
+    btn.style.borderColor = 'var(--color-accent)';
+  } else {
+    video.muted = true;
+    text.textContent = 'Включить звук';
+    btn.style.borderColor = 'rgba(255,255,255,0.15)';
+  }
+}
+
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
