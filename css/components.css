@@ -1,5 +1,22 @@
 /* Travel Aravia — components */
 
+/* ── Logo inline ── */
+.logo-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+.logo-inline span {
+  font-family: 'Cormorant Garant', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+
 /* ── Header ── */
 .header {
   position: fixed;
