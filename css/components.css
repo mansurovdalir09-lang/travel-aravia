@@ -343,6 +343,8 @@
   overflow: hidden;
   min-height: 320px;
   cursor: pointer;
+  border: 1px solid rgba(196, 135, 90, 0.15);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
 }
 
 .destinations__card--large {
@@ -390,7 +392,7 @@
 
 .destinations__title {
   font-family: var(--font-heading);
-  font-size: 36px;
+  font-size: clamp(28px, 3vw, 42px);
   color: var(--color-white);
   margin-bottom: 10px;
 }
@@ -467,8 +469,21 @@
 }
 
 .services__icon {
-  font-size: 40px;
-  margin-bottom: 20px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(196, 135, 90, 0.15);
+  border-radius: 14px;
+  margin-bottom: 24px;
+  color: var(--color-accent);
+  transition: all 0.3s ease;
+}
+
+.services__card:hover .services__icon {
+  background: rgba(196, 135, 90, 0.25);
+  transform: scale(1.1);
 }
 
 .services__card h3 {
@@ -487,7 +502,13 @@
 
 @media (max-width: 768px) {
   .hero__title {
-    font-size: clamp(36px, 10vw, 56px);
+    font-size: clamp(32px, 8vw, 48px);
+    line-height: 1.1;
+  }
+
+  .hero__content {
+    padding-top: 80px;
+    padding-bottom: 40px;
   }
 
   .hero__subtitle {
