@@ -32,7 +32,7 @@
 </header>
 
 <section class="dest-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;">
-  <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+  <video class="hero__video" id="heroVideo" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
     <source src="../assets/videos/al-ula.mp4" type="video/mp4">
   </video>
   <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(26,15,10,0.95) 0%, rgba(26,15,10,0.3) 60%, transparent 100%);"></div>
@@ -41,6 +41,10 @@
     <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(48px,7vw,96px);color:#fff;line-height:1.05;margin-bottom:20px;">Аль-Уля</h1>
     <p style="font-size:18px;color:var(--color-sand);max-width:560px;line-height:1.7;margin-bottom:40px;">Город-музей под открытым небом. Скала Слон, древний город Хегра, зеркальное здание Марайя — место где история оживает.</p>
     <a href="../tour-builder.html" class="btn-primary">Собрать тур в Аль-Улю</a>
+    <button class="hero__sound" id="soundBtn" onclick="toggleSound()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path class="sound-on" d="M15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"/></svg>
+      <span id="soundText">Включить звук</span>
+    </button>
   </div>
 </section>
 
