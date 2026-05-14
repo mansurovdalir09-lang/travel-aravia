@@ -179,7 +179,7 @@
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: clamp(48px, 6vw, 88px);
+  font-size: clamp(28px, 3.5vw, 52px);
   font-weight: 600;
   line-height: 1.05;
   color: var(--color-white);
@@ -230,7 +230,7 @@
   position: relative;
   z-index: 10;
   margin-top: -56px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
 }
 
 .hero-search__inner {
