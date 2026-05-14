@@ -1,5 +1,190 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Мероприятия</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мероприятия — Travel Aravia</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:48px;width:auto;">
+    </a>
+    <nav class="header__nav">
+      <a href="tours.html">Туры</a>
+      <a href="destinations/riyadh.html">Направления</a>
+      <a href="events.html">Мероприятия</a>
+      <a href="hotels.html">Отели</a>
+      <a href="tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:160px 0 80px;text-align:center;background:linear-gradient(180deg,rgba(92,45,26,0.3) 0%,transparent 100%);">
+  <div class="container">
+    <p class="section-label">Саудовская Аравия 2026</p>
+    <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(40px,6vw,80px);color:#fff;line-height:1.1;margin-bottom:24px;">Мероприятия и события</h1>
+    <p style="font-size:18px;color:var(--color-sand);max-width:560px;margin:0 auto 48px;line-height:1.7;">Спорт, бизнес, культура и фестивали — мы организуем поездку на любое событие в Королевстве.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="filter-btn active" onclick="filterEvents('all')">Все</button>
+      <button class="filter-btn" onclick="filterEvents('sport')">Спорт</button>
+      <button class="filter-btn" onclick="filterEvents('business')">Бизнес</button>
+      <button class="filter-btn" onclick="filterEvents('culture')">Культура</button>
+      <button class="filter-btn" onclick="filterEvents('education')">Образование</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="events-full__grid" id="eventsGrid">
+
+      <div class="event-card" data-category="sport">
+        <div class="event-card__cat sport">Спорт</div>
+        <h3>Игры Саудовской Аравии</h3>
+        <p class="event-card__date">📅 3 — 17 октября 2026</p>
+        <p>Крупнейшее национальное спортивное мероприятие Королевства. Призовой фонд 180 млн риалов. 7 паралимпийских соревнований, 10 показательных и 15 молодёжных категорий.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="business">
+        <div class="event-card__cat business">Бизнес</div>
+        <h3>Biban Forum</h3>
+        <p class="event-card__date">📅 5 — 9 ноября 2026</p>
+        <p>Крупнейший форум МСП и предпринимательства. Стартапы, инвесторы и инноваторы со всего мира. Более 3000 участников за 2 дня.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="culture">
+        <div class="event-card__cat culture">Культура</div>
+        <h3>Фестиваль соколиной охоты короля Абдулазиза</h3>
+        <p class="event-card__date">📅 28 ноября — 14 декабря 2026</p>
+        <p>Международный фестиваль организованный Саудовским клубом соколов. Уникальное культурное наследие Аравии под открытым небом.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="education">
+        <div class="event-card__cat education">Образование</div>
+        <h3>Международная книжная ярмарка Эр-Рияда</h3>
+        <p class="event-card__date">📅 26 сентября — 5 октября 2026</p>
+        <p>Одно из крупнейших культурных событий региона. Более 2000 издательств из 30 стран. 800 павильонов в Университете короля Сауда.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="business">
+        <div class="event-card__cat business">Бизнес</div>
+        <h3>Форум цифровых технологий</h3>
+        <p class="event-card__date">📅 9 октября 2026</p>
+        <p>Четвёртый Форум по цифровым технологиям от Комиссии по связи. Девиз: «Синергия для устойчивого цифрового будущего».</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="business">
+        <div class="event-card__cat business">Бизнес</div>
+        <h3>Cityscape Global</h3>
+        <p class="event-card__date">📅 11 — 14 ноября 2026</p>
+        <p>Крупнейшая выставка недвижимости в мире. Более 400 экспонентов, 500 спикеров и семь конференций под девизом «Будущее жизни».</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="business">
+        <div class="event-card__cat business">Бизнес</div>
+        <h3>Step Saudi Conference</h3>
+        <p class="event-card__date">📅 26 — 27 ноября 2026</p>
+        <p>Лучшие саудовские предприниматели, инвесторы и цифровые энтузиасты. 5 контент-треков, 200+ стартапов, 3000+ участников.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="culture">
+        <div class="event-card__cat culture">Культура</div>
+        <h3>Выставка InFlavour</h3>
+        <p class="event-card__date">📅 1 — 3 октября 2026</p>
+        <p>Главная выставка пищевой промышленности региона. Новые технологии, глобальная продовольственная безопасность и устойчивое развитие.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+      <div class="event-card" data-category="education">
+        <div class="event-card__cat education">Образование</div>
+        <h3>Премия короля Фейсала</h3>
+        <p class="event-card__date">📅 2026 — церемония награждения</p>
+        <p>48-е издание престижной премии. Категории: исламские исследования, арабский язык, медицина и естественные науки.</p>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Организовать поездку</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(92,45,26,0.08);text-align:center;">
+  <div class="container">
+    <p class="section-label">Не нашли нужное?</p>
+    <h2 class="section-title">Организуем поездку на любое событие</h2>
+    <p style="color:var(--color-sand);font-size:17px;max-width:500px;margin:0 auto 40px;">Напишите нам — мы найдём мероприятие под ваши интересы и организуем всё под ключ.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <a href="https://wa.me/79513894443" target="_blank" class="btn-outline">Написать в WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:44px;width:auto;margin-bottom:16px;">
+        <p>Надёжные проводники по Саудовской Аравии для русскоговорящих путешественников.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Направления</h4>
+        <a href="destinations/riyadh.html">Эр-Рияд</a>
+        <a href="destinations/jeddah.html">Джидда</a>
+        <a href="destinations/al-ula.html">Аль-Уля</a>
+      </div>
+      <div class="footer__links">
+        <h4>Компания</h4>
+        <a href="tours.html">Туры</a>
+        <a href="events.html">Мероприятия</a>
+        <a href="hotels.html">Отели</a>
+        <a href="tour-builder.html">Собрать тур</a>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://www.instagram.com/travelaravia/" target="_blank">Instagram</a>
+        <a href="https://wa.me/79513894443" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Travel Aravia. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function filterEvents(category) {
+  const cards = document.querySelectorAll('.event-card');
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  cards.forEach(card => {
+    if (category === 'all' || card.dataset.category === category) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
 </html>
