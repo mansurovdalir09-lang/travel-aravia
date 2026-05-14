@@ -278,6 +278,23 @@
   border-color: var(--color-accent);
 }
 
+.hero-search__field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(0.7) sepia(1) hue-rotate(340deg) saturate(3);
+  cursor: pointer;
+}
+
+.hero-search__field input[type="date"]::-webkit-datetime-edit {
+  color: var(--color-white);
+}
+
+.hero-search__field input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+  color: rgba(255,255,255,0.5);
+}
+
+.hero-search__field input[type="date"]:valid::-webkit-datetime-edit-fields-wrapper {
+  color: var(--color-white);
+}
+
 .hero-search__field select option {
   background: #1A0F0A;
 }
