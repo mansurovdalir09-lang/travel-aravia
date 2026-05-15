@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../css/components.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Перейти к содержимому</a>
 
 <header class="header" id="header">
   <div class="container header__inner">
@@ -30,13 +31,14 @@
     </nav>
     <div class="header__actions">
       <a href="../tour-builder.html" class="btn-primary">Собрать тур</a>
-      <button class="header__burger" id="burger">
+      <button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
+<main id="main-content">
 <section style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
   <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.95) 0%,rgba(26,15,10,0.3) 60%,transparent 100%);"></div>
   <div class="container" style="position:relative;z-index:1;">
@@ -173,7 +175,7 @@
   </div>
 </footer>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="../tours.html">Туры</a>
     <a href="../destinations/riyadh.html">Направления</a>

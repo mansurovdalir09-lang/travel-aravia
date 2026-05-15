@@ -16,6 +16,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Перейти к содержимому</a>
 
 <header class="header" id="header">
   <div class="container header__inner">
@@ -31,13 +32,14 @@
     </nav>
     <div class="header__actions">
       <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
-      <button class="header__burger" id="burger">
+      <button class="header__burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
+<main id="main-content">
 <section style="padding:140px 0 60px;background:linear-gradient(180deg,rgba(92,45,26,0.3) 0%,transparent 100%);">
   <div class="container">
     <p class="section-label">Шаг за шагом</p>
@@ -283,7 +285,7 @@
   </div>
 </footer>
 
-<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="tours.html">Туры</a>
     <a href="destinations/riyadh.html">Направления</a>
@@ -406,6 +408,7 @@ function downloadPDF() {
       </style>
     </head>
     <body>
+<a href="#main-content" class="skip-link">Перейти к содержимому</a>
       <div class="pdf-header">
         <div class="pdf-logo">TRAVEL ARAVIA</div>
         <div class="pdf-tagline">Путешествие по Аравии</div>
