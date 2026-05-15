@@ -758,6 +758,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+  align-items: stretch;
 }
 .event-card {
   background: rgba(255,255,255,0.03);
@@ -829,6 +830,9 @@
   border-radius: 20px;
   padding: 24px;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 .tour-card:hover {
   border-color: rgba(196,135,90,0.4);
