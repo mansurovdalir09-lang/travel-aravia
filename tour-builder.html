@@ -1,5 +1,434 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Конструктор тура</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Собрать тур — Travel Aravia</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:48px;width:auto;">
+    </a>
+    <nav class="header__nav">
+      <a href="tours.html">Туры</a>
+      <a href="destinations/riyadh.html">Направления</a>
+      <a href="events.html">Мероприятия</a>
+      <a href="hotels.html">Отели</a>
+      <a href="tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:140px 0 60px;background:linear-gradient(180deg,rgba(92,45,26,0.3) 0%,transparent 100%);">
+  <div class="container">
+    <p class="section-label">Шаг за шагом</p>
+    <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(36px,5vw,72px);color:#fff;line-height:1.1;margin-bottom:16px;">Соберите свой тур</h1>
+    <p style="font-size:17px;color:var(--color-sand);max-width:500px;line-height:1.7;">Выберите город, даты, отель и активности — мы возьмём на себя всё остальное.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;">
+
+      <div class="builder__steps">
+
+        <!-- ШАГ 1 -->
+        <div class="builder__step" id="step1">
+          <div class="builder__step-header">
+            <div class="builder__step-num">1</div>
+            <h2>Выберите направление</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
+            <div class="destination-option" onclick="selectDestination(this,'Эр-Рияд')">
+              <img src="assets/images/elephant-rock.jpg" alt="Эр-Рияд" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+              <h4>Эр-Рияд</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Столица и деловой центр</p>
+            </div>
+            <div class="destination-option" onclick="selectDestination(this,'Аль-Уля')">
+              <video autoplay muted loop playsinline style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+                <source src="assets/videos/al-ula.mp4" type="video/mp4">
+              </video>
+              <h4>Аль-Уля</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Древние цивилизации</p>
+            </div>
+            <div class="destination-option" onclick="selectDestination(this,'Джидда')">
+              <video autoplay muted loop playsinline style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+                <source src="assets/videos/jeddah.mp4" type="video/mp4">
+              </video>
+              <h4>Джидда</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Красное море и история</p>
+            </div>
+            <div class="destination-option" onclick="selectDestination(this,'Умлюдж')">
+              <video autoplay muted loop playsinline style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+                <source src="assets/videos/umluj.mp4" type="video/mp4">
+              </video>
+              <h4>Умлюдж</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Саудовские Мальдивы</p>
+            </div>
+            <div class="destination-option" onclick="selectDestination(this,'Все города')">
+              <img src="assets/images/old-city.jpg" alt="Все города" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+              <h4>Все города</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Комбо-тур</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ШАГ 2 -->
+        <div class="builder__step" id="step2">
+          <div class="builder__step-header">
+            <div class="builder__step-num">2</div>
+            <h2>Выберите даты и количество дней</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;">
+            <div>
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Дата выезда</label>
+              <input type="date" id="dateFrom" onchange="updateTour()" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Дата возврата</label>
+              <input type="date" id="dateTo" onchange="updateTour()" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Туристов</label>
+              <select id="tourists" onchange="updateTour()" style="width:100%;background:rgba(30,15,8,0.95);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
+                <option value="1">1 турист</option>
+                <option value="2">2 туриста</option>
+                <option value="3">3 туриста</option>
+                <option value="4">4 туриста</option>
+                <option value="5+">5+ туристов</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- ШАГ 3 -->
+        <div class="builder__step" id="step3">
+          <div class="builder__step-header">
+            <div class="builder__step-num">3</div>
+            <h2>Выберите отель</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+            <div class="hotel-option" onclick="selectHotel(this,'Эконом (3★)')">
+              <h4>Эконом</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Отели 3★ — комфортно и доступно</p>
+              <div style="font-family:'Cormorant Garant',serif;font-size:24px;color:var(--color-accent);margin-top:8px;">от $60/ночь</div>
+            </div>
+            <div class="hotel-option" onclick="selectHotel(this,'Комфорт (4★)')">
+              <h4>Комфорт</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Отели 4★ — лучшее соотношение цены</p>
+              <div style="font-family:'Cormorant Garant',serif;font-size:24px;color:var(--color-accent);margin-top:8px;">от $120/ночь</div>
+            </div>
+            <div class="hotel-option" onclick="selectHotel(this,'Люкс (5★)')">
+              <h4>Люкс</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Отели 5★ — максимальный комфорт</p>
+              <div style="font-family:'Cormorant Garant',serif;font-size:24px;color:var(--color-accent);margin-top:8px;">от $250/ночь</div>
+            </div>
+            <div class="hotel-option" onclick="selectHotel(this,'Подобрать индивидуально')">
+              <h4>Индивидуально</h4>
+              <p style="font-size:13px;color:var(--color-sand);">Менеджер подберёт лучший вариант</p>
+              <div style="font-family:'Cormorant Garant',serif;font-size:24px;color:var(--color-accent);margin-top:8px;">по запросу</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ШАГ 4 -->
+        <div class="builder__step" id="step4">
+          <div class="builder__step-header">
+            <div class="builder__step-num">4</div>
+            <h2>Добавьте услуги</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;">
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Визовая поддержка">
+              <span>
+                <strong>Визовая поддержка</strong>
+                <small>Оформление визы под ключ</small>
+              </span>
+            </label>
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Авиабилеты">
+              <span>
+                <strong>Авиабилеты</strong>
+                <small>Подбор лучших рейсов</small>
+              </span>
+            </label>
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Трансфер">
+              <span>
+                <strong>Трансфер</strong>
+                <small>Комфортный автомобиль</small>
+              </span>
+            </label>
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Русскоязычный гид">
+              <span>
+                <strong>Опытный гид</strong>
+                <small>Знает Саудию изнутри</small>
+              </span>
+            </label>
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Экскурсии">
+              <span>
+                <strong>Экскурсии</strong>
+                <small>По историческим местам</small>
+              </span>
+            </label>
+            <label class="service-option">
+              <input type="checkbox" onchange="updateTour()" data-service="Активности">
+              <span>
+                <strong>Активности</strong>
+                <small>Зиплайн, шары, дайвинг</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- ШАГ 5 -->
+        <div class="builder__step" id="step5">
+          <div class="builder__step-header">
+            <div class="builder__step-num">5</div>
+            <h2>Ваши контакты</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+            <div>
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Имя</label>
+              <input type="text" id="clientName" placeholder="Ваше имя" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
+            </div>
+            <div>
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">WhatsApp</label>
+              <input type="tel" id="clientPhone" placeholder="+7 900 000 00 00" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
+            </div>
+            <div style="grid-column:1/-1;">
+              <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Пожелания</label>
+              <textarea id="clientWish" placeholder="Особые пожелания, вопросы..." rows="3" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;resize:vertical;"></textarea>
+            </div>
+          </div>
+          <button onclick="submitTour()" class="btn-primary" style="margin-top:24px;width:100%;font-size:17px;padding:18px;">
+            Отправить заявку менеджеру →
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ИТОГ -->
+      <div class="builder__summary" id="summary">
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:28px;color:white;margin-bottom:24px;">Ваш тур</h3>
+        <div id="summaryContent">
+          <p style="color:var(--color-gray);font-size:15px;">Выберите направление чтобы начать составлять тур</p>
+        </div>
+        <div id="summaryWhatsapp" style="display:none;margin-top:24px;">
+          <button onclick="downloadPDF()" style="width:100%;background:rgba(196,135,90,0.15);border:1px solid var(--color-accent);color:var(--color-accent);border-radius:12px;padding:16px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;transition:all 0.3s ease;" onmouseover="this.style.background='rgba(196,135,90,0.25)'" onmouseout="this.style.background='rgba(196,135,90,0.15)'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Скачать PDF маршрут
+          </button>
+          <button onclick="sendToWhatsapp()" style="width:100%;background:#25D366;color:white;border:none;border-radius:12px;padding:16px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Написать в WhatsApp
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:44px;width:auto;margin-bottom:16px;">
+        <p>Надёжные проводники по Саудовской Аравии для русскоговорящих путешественников.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Направления</h4>
+        <a href="destinations/riyadh.html">Эр-Рияд</a>
+        <a href="destinations/jeddah.html">Джидда</a>
+        <a href="destinations/al-ula.html">Аль-Уля</a>
+      </div>
+      <div class="footer__links">
+        <h4>Компания</h4>
+        <a href="tours.html">Туры</a>
+        <a href="events.html">Мероприятия</a>
+        <a href="hotels.html">Отели</a>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://www.instagram.com/travelaravia/" target="_blank">Instagram</a>
+        <a href="https://wa.me/79513894443" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Travel Aravia. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+let tourData = { destination:'', dateFrom:'', dateTo:'', days:0, tourists:'1', hotel:'', services:[] };
+
+function selectDestination(el, name) {
+  document.querySelectorAll('.destination-option').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  tourData.destination = name;
+  updateSummary();
+}
+
+function selectHotel(el, name) {
+  document.querySelectorAll('.hotel-option').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  tourData.hotel = name;
+  updateSummary();
+}
+
+function updateTour() {
+  tourData.dateFrom = document.getElementById('dateFrom').value;
+  tourData.dateTo = document.getElementById('dateTo').value;
+  tourData.tourists = document.getElementById('tourists').value;
+  if (tourData.dateFrom && tourData.dateTo) {
+    const d1 = new Date(tourData.dateFrom);
+    const d2 = new Date(tourData.dateTo);
+    tourData.days = Math.max(0, Math.round((d2-d1)/(1000*60*60*24)));
+  }
+  tourData.services = [];
+  document.querySelectorAll('.service-option input:checked').forEach(cb => {
+    tourData.services.push(cb.dataset.service);
+  });
+  updateSummary();
+}
+
+function updateSummary() {
+  const c = document.getElementById('summaryContent');
+  const w = document.getElementById('summaryWhatsapp');
+  if (!tourData.destination) return;
+  let html = '';
+  if (tourData.destination) html += `<div class="summary-item"><span>📍 Направление</span><strong>${tourData.destination}</strong></div>`;
+  if (tourData.dateFrom) html += `<div class="summary-item"><span>📅 Дата выезда</span><strong>${new Date(tourData.dateFrom).toLocaleDateString('ru')}</strong></div>`;
+  if (tourData.dateTo) html += `<div class="summary-item"><span>📅 Дата возврата</span><strong>${new Date(tourData.dateTo).toLocaleDateString('ru')}</strong></div>`;
+  if (tourData.days) html += `<div class="summary-item"><span>🌙 Ночей</span><strong>${tourData.days}</strong></div>`;
+  if (tourData.tourists) html += `<div class="summary-item"><span>👥 Туристов</span><strong>${tourData.tourists}</strong></div>`;
+  if (tourData.hotel) html += `<div class="summary-item"><span>🏨 Отель</span><strong>${tourData.hotel}</strong></div>`;
+  if (tourData.services.length) html += `<div class="summary-item"><span>✅ Услуги</span><strong>${tourData.services.join(', ')}</strong></div>`;
+  c.innerHTML = html;
+  w.style.display = tourData.destination ? 'block' : 'none';
+}
+
+function sendToWhatsapp() {
+  const name = document.getElementById('clientName').value || 'Клиент';
+  const phone = document.getElementById('clientPhone').value || '';
+  const wish = document.getElementById('clientWish').value || '';
+  let msg = `Здравствуйте! Хочу собрать тур:\n\n`;
+  msg += `📍 Направление: ${tourData.destination}\n`;
+  if (tourData.dateFrom) msg += `📅 Выезд: ${new Date(tourData.dateFrom).toLocaleDateString('ru')}\n`;
+  if (tourData.dateTo) msg += `📅 Возврат: ${new Date(tourData.dateTo).toLocaleDateString('ru')}\n`;
+  if (tourData.days) msg += `🌙 Ночей: ${tourData.days}\n`;
+  msg += `👥 Туристов: ${tourData.tourists}\n`;
+  if (tourData.hotel) msg += `🏨 Отель: ${tourData.hotel}\n`;
+  if (tourData.services.length) msg += `✅ Услуги: ${tourData.services.join(', ')}\n`;
+  msg += `\n👤 Имя: ${name}\n`;
+  if (phone) msg += `📞 Телефон: ${phone}\n`;
+  if (wish) msg += `💬 Пожелания: ${wish}`;
+  window.open(`https://wa.me/79513894443?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function downloadPDF() {
+  if (!tourData.destination) {
+    alert('Выберите направление для создания PDF');
+    return;
+  }
+
+  const name = document.getElementById('clientName').value || 'Не указано';
+  const phone = document.getElementById('clientPhone').value || 'Не указан';
+  const wish = document.getElementById('clientWish').value || '';
+
+  const servicesHTML = tourData.services.length
+    ? tourData.services.map(s => `<li>${s}</li>`).join('')
+    : '<li>Не выбраны</li>';
+
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Маршрут Travel Aravia</title>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+      <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #1A0F0A; color: #FFFFFF; font-family: 'Inter', sans-serif; padding: 40px; }
+        .pdf-header { text-align: center; padding-bottom: 32px; border-bottom: 1px solid rgba(196,135,90,0.4); margin-bottom: 32px; }
+        .pdf-logo { font-family: 'Cormorant Garant', serif; font-size: 36px; font-weight: 700; color: #C4875A; letter-spacing: 3px; margin-bottom: 6px; }
+        .pdf-tagline { font-size: 14px; color: #E8D5B7; letter-spacing: 2px; }
+        .pdf-title { font-family: 'Cormorant Garant', serif; font-size: 28px; color: #FFFFFF; margin-bottom: 24px; font-weight: 600; }
+        .pdf-section { margin-bottom: 28px; }
+        .pdf-section-title { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #C4875A; margin-bottom: 12px; }
+        .pdf-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: rgba(255,255,255,0.04); border: 1px solid rgba(196,135,90,0.15); border-radius: 10px; margin-bottom: 8px; }
+        .pdf-row-label { color: #8B7355; font-size: 14px; }
+        .pdf-row-value { color: #FFFFFF; font-weight: 500; font-size: 14px; text-align: right; }
+        .pdf-services { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        .pdf-services li { padding: 10px 16px; background: rgba(196,135,90,0.1); border: 1px solid rgba(196,135,90,0.25); border-radius: 8px; font-size: 13px; color: #E8D5B7; }
+        .pdf-services li::before { content: '✓ '; color: #C4875A; font-weight: 700; }
+        .pdf-footer { margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(196,135,90,0.3); text-align: center; }
+        .pdf-footer p { font-size: 12px; color: #8B7355; margin-bottom: 4px; }
+        .pdf-footer a { color: #C4875A; }
+        .pdf-accent { color: #C4875A; font-family: 'Cormorant Garant', serif; font-size: 18px; }
+        @media print { body { padding: 20px; } @page { margin: 10mm; background: #1A0F0A; } }
+      </style>
+    </head>
+    <body>
+      <div class="pdf-header">
+        <div class="pdf-logo">TRAVEL ARAVIA</div>
+        <div class="pdf-tagline">Путешествие по Аравии</div>
+      </div>
+      <div class="pdf-title">Ваш маршрут</div>
+      <div class="pdf-section">
+        <div class="pdf-section-title">Детали поездки</div>
+        <div class="pdf-row"><span class="pdf-row-label">📍 Направление</span><span class="pdf-row-value pdf-accent">${tourData.destination}</span></div>
+        ${tourData.dateFrom ? `<div class="pdf-row"><span class="pdf-row-label">📅 Дата выезда</span><span class="pdf-row-value">${new Date(tourData.dateFrom).toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'})}</span></div>` : ''}
+        ${tourData.dateTo ? `<div class="pdf-row"><span class="pdf-row-label">📅 Дата возврата</span><span class="pdf-row-value">${new Date(tourData.dateTo).toLocaleDateString('ru-RU', {day:'numeric',month:'long',year:'numeric'})}</span></div>` : ''}
+        ${tourData.days ? `<div class="pdf-row"><span class="pdf-row-label">🌙 Количество ночей</span><span class="pdf-row-value">${tourData.days}</span></div>` : ''}
+        <div class="pdf-row"><span class="pdf-row-label">👥 Туристов</span><span class="pdf-row-value">${tourData.tourists}</span></div>
+        ${tourData.hotel ? `<div class="pdf-row"><span class="pdf-row-label">🏨 Категория отеля</span><span class="pdf-row-value">${tourData.hotel}</span></div>` : ''}
+      </div>
+      ${tourData.services.length ? `<div class="pdf-section"><div class="pdf-section-title">Включённые услуги</div><ul class="pdf-services">${servicesHTML}</ul></div>` : ''}
+      <div class="pdf-section">
+        <div class="pdf-section-title">Контактные данные</div>
+        <div class="pdf-row"><span class="pdf-row-label">👤 Имя</span><span class="pdf-row-value">${name}</span></div>
+        ${phone !== 'Не указан' ? `<div class="pdf-row"><span class="pdf-row-label">📞 WhatsApp</span><span class="pdf-row-value">${phone}</span></div>` : ''}
+        ${wish ? `<div class="pdf-row"><span class="pdf-row-label">💬 Пожелания</span><span class="pdf-row-value">${wish}</span></div>` : ''}
+      </div>
+      <div class="pdf-footer">
+        <p>Travel Aravia — надёжные проводники по Саудовской Аравии</p>
+        <p>Instagram: <a>@travelaravia</a> | WhatsApp: +7 951 389-44-43</p>
+        <p style="margin-top:8px;font-size:11px;">Этот маршрут составлен специально для вас</p>
+      </div>
+      <script>window.onload = function() { setTimeout(function() { window.print(); }, 500); }<\/script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
+
+function submitTour() {
+  const name = document.getElementById('clientName').value;
+  if (!tourData.destination) { alert('Выберите направление'); return; }
+  if (!name) { alert('Введите ваше имя'); return; }
+  sendToWhatsapp();
+}
+</script>
+</body>
 </html>
