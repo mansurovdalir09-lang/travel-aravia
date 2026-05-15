@@ -1,5 +1,277 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Туры</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Туры — Travel Aravia</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:48px;width:auto;">
+    </a>
+    <nav class="header__nav">
+      <a href="tours.html">Туры</a>
+      <a href="destinations/riyadh.html">Направления</a>
+      <a href="events.html">Мероприятия</a>
+      <a href="hotels.html">Отели</a>
+      <a href="tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:160px 0 80px;text-align:center;background:linear-gradient(180deg,rgba(92,45,26,0.3) 0%,transparent 100%);">
+  <div class="container">
+    <p class="section-label">Готовые маршруты</p>
+    <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(40px,6vw,80px);color:#fff;line-height:1.1;margin-bottom:24px;">Авторские туры по Саудовской Аравии</h1>
+    <p style="font-size:18px;color:var(--color-sand);max-width:560px;margin:0 auto 48px;line-height:1.7;">Готовые маршруты для русскоговорящих путешественников. Всё включено — визы, билеты, отели, гид.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="filter-btn active" onclick="filterTours('all', this)">Все туры</button>
+      <button class="filter-btn" onclick="filterTours('riyadh', this)">Эр-Рияд</button>
+      <button class="filter-btn" onclick="filterTours('jeddah', this)">Джидда</button>
+      <button class="filter-btn" onclick="filterTours('alula', this)">Аль-Уля</button>
+      <button class="filter-btn" onclick="filterTours('combined', this)">Комбо</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="events-full__grid" id="toursGrid">
+
+      <div class="tour-card" data-city="riyadh">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <img src="assets/images/elephant-rock.jpg" alt="Эр-Рияд" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat business" style="margin:0;">Эр-Рияд</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">5 дней</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Знакомство с Эр-Риядом</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Дворец Мурабба, Дирийя, башня Аль-Файсалия, Национальный музей и фонтан короля Фахда. Полное погружение в столицу.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Виза включена</span>
+          <span class="hotel-tag">Отель 5★</span>
+          <span class="hotel-tag">Русский гид</span>
+          <span class="hotel-tag">Трансфер</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$1,200</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+      <div class="tour-card" data-city="alula">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="assets/videos/al-ula.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat sport" style="margin:0;">Аль-Уля</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">4 дня</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Древняя Аль-Уля</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Скала Слон, гробницы Хегры, Марайя и зиплайн Сикки. Незабываемое путешествие в город-музей под открытым небом.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Виза включена</span>
+          <span class="hotel-tag">Эко-отель</span>
+          <span class="hotel-tag">Гид</span>
+          <span class="hotel-tag">Зиплайн</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$1,500</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+      <div class="tour-card" data-city="jeddah">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="assets/videos/jeddah.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat culture" style="margin:0;">Джидда</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">3 дня</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Жемчужина Красного моря</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Al-Balad, мечеть Аль-Рахма, набережная Корниш и свежайшие морепродукты. Идеально для первого знакомства с Саудией.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Виза включена</span>
+          <span class="hotel-tag">Отель на море</span>
+          <span class="hotel-tag">Гид</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$900</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+      <div class="tour-card" data-city="combined">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <img src="assets/images/old-city.jpg" alt="Комбо тур" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat education" style="margin:0;">Комбо</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">10 дней</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Вся Саудовская Аравия</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Эр-Рияд + Джидда + Аль-Уля. Полное погружение в страну — от мегаполиса до пустыни и Красного моря.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Виза включена</span>
+          <span class="hotel-tag">3 города</span>
+          <span class="hotel-tag">Гид</span>
+          <span class="hotel-tag">Перелёты</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$3,200</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+      <div class="tour-card" data-city="combined">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+            <source src="assets/videos/umluj.mp4" type="video/mp4">
+          </video>
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat culture" style="margin:0;">Умлюдж</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">5 дней</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Саудовские Мальдивы — Умлюдж</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Кристальная вода, белоснежный песок, коралловые рифы и уединённые виллы. Место где легко забыть о суете.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Виза включена</span>
+          <span class="hotel-tag">Вилла</span>
+          <span class="hotel-tag">Дайвинг</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$1,800</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+      <div class="tour-card" data-city="riyadh">
+        <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
+          <img src="assets/images/elephant-rock.jpg" alt="Спорт тур" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
+          <div style="position:absolute;bottom:16px;left:16px;">
+            <span class="event-card__cat sport" style="margin:0;">Спорт</span>
+          </div>
+          <div style="position:absolute;top:16px;right:16px;background:rgba(196,135,90,0.9);color:white;padding:4px 12px;border-radius:50px;font-size:13px;font-weight:600;">7 дней</div>
+        </div>
+        <h3 style="font-family:'Cormorant Garant',serif;font-size:24px;color:white;margin-bottom:12px;">Спортивный тур в Эр-Рияд</h3>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Футбол, Формула 1 или Игры Саудовской Аравии. Билеты, отель рядом с ареной и трансфер включены.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">Билеты на матч</span>
+          <span class="hotel-tag">Отель</span>
+          <span class="hotel-tag">Трансфер</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <div>
+            <div style="font-size:13px;color:var(--color-gray);">от</div>
+            <div style="font-family:'Cormorant Garant',serif;font-size:32px;color:var(--color-accent);font-weight:700;">$2,100</div>
+          </div>
+          <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;">Выбрать тур</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(92,45,26,0.08);text-align:center;">
+  <div class="container">
+    <p class="section-label">Свой маршрут</p>
+    <h2 class="section-title">Не нашли подходящий тур?</h2>
+    <p style="color:var(--color-sand);font-size:17px;max-width:500px;margin:0 auto 40px;">Соберите свой тур — выберите город, даты, отель и активности. Мы всё организуем.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="tour-builder.html" class="btn-primary">Собрать свой тур</a>
+      <a href="https://wa.me/79513894443" target="_blank" class="btn-outline">Написать в WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:44px;width:auto;margin-bottom:16px;">
+        <p>Надёжные проводники по Саудовской Аравии для русскоговорящих путешественников.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Направления</h4>
+        <a href="destinations/riyadh.html">Эр-Рияд</a>
+        <a href="destinations/jeddah.html">Джидда</a>
+        <a href="destinations/al-ula.html">Аль-Уля</a>
+      </div>
+      <div class="footer__links">
+        <h4>Компания</h4>
+        <a href="tours.html">Туры</a>
+        <a href="events.html">Мероприятия</a>
+        <a href="hotels.html">Отели</a>
+        <a href="tour-builder.html">Собрать тур</a>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://www.instagram.com/travelaravia/" target="_blank">Instagram</a>
+        <a href="https://wa.me/79513894443" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Travel Aravia. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function filterTours(city, btn) {
+  const cards = document.querySelectorAll('.tour-card');
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  cards.forEach(card => {
+    if (city === 'all' || card.dataset.city === city) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
 </html>
