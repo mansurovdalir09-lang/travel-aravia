@@ -799,3 +799,25 @@
 .event-card h3 { font-family: var(--font-heading); font-size: 22px; color: var(--color-white); margin-bottom: 10px; }
 .event-card__date { font-size: 13px; color: var(--color-gray); margin-bottom: 12px; }
 .event-card p { font-size: 15px; color: var(--color-sand); line-height: 1.6; }
+
+/* Hotel cards */
+.hotel-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(196,135,90,0.12);
+  border-radius: 20px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.hotel-card:hover {
+  border-color: rgba(196,135,90,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+.hotel-tag {
+  font-size: 12px;
+  color: var(--color-accent);
+  border: 1px solid rgba(196,135,90,0.3);
+  border-radius: 50px;
+  padding: 3px 10px;
+}

@@ -1,5 +1,241 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head><meta charset="UTF-8"><title>Travel Aravia — Отели</title></head>
-<body></body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отели — Travel Aravia</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a href="index.html" class="header__logo">
+      <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:48px;width:auto;">
+    </a>
+    <nav class="header__nav">
+      <a href="tours.html">Туры</a>
+      <a href="destinations/riyadh.html">Направления</a>
+      <a href="events.html">Мероприятия</a>
+      <a href="hotels.html">Отели</a>
+      <a href="tour-builder.html">Собрать тур</a>
+    </nav>
+    <div class="header__actions">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур</a>
+      <button class="header__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<section style="padding:160px 0 80px;text-align:center;background:linear-gradient(180deg,rgba(92,45,26,0.3) 0%,transparent 100%);">
+  <div class="container">
+    <p class="section-label">Проверенные варианты</p>
+    <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(40px,6vw,80px);color:#fff;line-height:1.1;margin-bottom:24px;">Отели в Саудовской Аравии</h1>
+    <p style="font-size:18px;color:var(--color-sand);max-width:560px;margin:0 auto 48px;line-height:1.7;">Подбираем отели под любой бюджет — от уютных до роскошных. Все варианты проверены лично.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="filter-btn active" onclick="filterHotels('all', this)">Все города</button>
+      <button class="filter-btn" onclick="filterHotels('riyadh', this)">Эр-Рияд</button>
+      <button class="filter-btn" onclick="filterHotels('jeddah', this)">Джидда</button>
+      <button class="filter-btn" onclick="filterHotels('alula', this)">Аль-Уля</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="events-full__grid" id="hotelsGrid">
+
+      <div class="hotel-card" data-city="riyadh">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#5C2D1A,#C4875A);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Эр-Рияд</span>
+        </div>
+        <div class="event-card__cat business">Эр-Рияд</div>
+        <h3>Four Seasons Hotel Riyadh</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Люкс</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Роскошный отель в башне Kingdom Tower. Панорамные виды на город, спа и рестораны мирового класса.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">3-местный</span>
+          <span class="hotel-tag">Завтрак включён</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+      <div class="hotel-card" data-city="riyadh">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#2C1A10,#8B5E3C);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Эр-Рияд</span>
+        </div>
+        <div class="event-card__cat business">Эр-Рияд</div>
+        <h3>Marriott Hotel Riyadh</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Бизнес</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Идеально для деловых поездок. Конференц-залы, бассейн и удобное расположение в деловом центре.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">Трансфер</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+      <div class="hotel-card" data-city="jeddah">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#1A3A5C,#3296FF);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Джидда</span>
+        </div>
+        <div class="event-card__cat culture">Джидда</div>
+        <h3>Rosewood Jeddah</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Люкс</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">На берегу Красного моря. Частный пляж, infinity pool и вид на знаменитый фонтан короля Фахда.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">3-местный</span>
+          <span class="hotel-tag">Пляж</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+      <div class="hotel-card" data-city="jeddah">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#1A4A3A,#2ECC71);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Джидда</span>
+        </div>
+        <div class="event-card__cat culture">Джидда</div>
+        <h3>Hyatt Regency Jeddah</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Комфорт</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Рядом со старым городом Al-Balad. Удобное расположение для знакомства с историческим центром.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">Завтрак</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+      <div class="hotel-card" data-city="alula">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#3A2A1A,#C4875A);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Аль-Уля</span>
+        </div>
+        <div class="event-card__cat sport">Аль-Уля</div>
+        <h3>Shaden Resort Al-Ula</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Эко-люкс</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Уникальный эко-курорт среди скал Аль-Улы. Виллы на воде, старинные пещеры и звёздное небо пустыни.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">Вилла</span>
+          <span class="hotel-tag">Экскурсии</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+      <div class="hotel-card" data-city="alula">
+        <div class="hotel-card__img" style="background:linear-gradient(135deg,#2A1A0A,#8B5E3C);height:200px;border-radius:12px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;">
+          <span style="font-family:'Cormorant Garant',serif;font-size:32px;color:white;opacity:0.5;">Аль-Уля</span>
+        </div>
+        <div class="event-card__cat sport">Аль-Уля</div>
+        <h3>Habitas AlUla</h3>
+        <div style="display:flex;gap:8px;margin:8px 0 12px;">
+          <span style="font-size:12px;color:var(--color-sand);">⭐⭐⭐⭐⭐</span>
+          <span style="font-size:12px;color:var(--color-gray);">Бутик</span>
+        </div>
+        <p style="font-size:15px;color:var(--color-sand);line-height:1.6;margin-bottom:16px;">Бутик-отель в пустыне. Деревянные домики среди скал, йога на рассвете и экскурсии к Хегре.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="hotel-tag">2-местный</span>
+          <span class="hotel-tag">Завтрак</span>
+          <span class="hotel-tag">Активности</span>
+        </div>
+        <a href="tour-builder.html" class="btn-primary" style="font-size:14px;padding:12px 24px;width:100%;text-align:center;display:block;">Добавить в тур</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <p class="section-label" style="text-align:center;margin-bottom:16px;">Habitas AlUla</p>
+    <p style="text-align:center;color:var(--color-sand);font-size:16px;max-width:520px;margin:0 auto 28px;line-height:1.6;">Бутик-отель в пустыне — деревянные домики среди скал, йога на рассвете и экскурсии к Хегре.</p>
+    <div style="border-radius:24px;overflow:hidden;max-width:720px;margin:0 auto;">
+      <video autoplay loop playsinline controls style="width:100%;max-height:420px;object-fit:contain;display:block;background:#000;">
+        <source src="assets/videos/hotel.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:rgba(92,45,26,0.08);text-align:center;">
+  <div class="container">
+    <p class="section-label">Индивидуальный подбор</p>
+    <h2 class="section-title">Подберём отель под ваш бюджет</h2>
+    <p style="color:var(--color-sand);font-size:17px;max-width:500px;margin:0 auto 40px;">У нас есть партнёры с ценами на весь год. Напишите — подберём лучший вариант.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="tour-builder.html" class="btn-primary">Собрать тур с отелем</a>
+      <a href="https://wa.me/79513894443" target="_blank" class="btn-outline">Написать в WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="assets/images/logo.svg" alt="Travel Aravia" style="height:44px;width:auto;margin-bottom:16px;">
+        <p>Надёжные проводники по Саудовской Аравии для русскоговорящих путешественников.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Направления</h4>
+        <a href="destinations/riyadh.html">Эр-Рияд</a>
+        <a href="destinations/jeddah.html">Джидда</a>
+        <a href="destinations/al-ula.html">Аль-Уля</a>
+      </div>
+      <div class="footer__links">
+        <h4>Компания</h4>
+        <a href="tours.html">Туры</a>
+        <a href="events.html">Мероприятия</a>
+        <a href="hotels.html">Отели</a>
+        <a href="tour-builder.html">Собрать тур</a>
+      </div>
+      <div class="footer__contacts">
+        <h4>Контакты</h4>
+        <a href="https://www.instagram.com/travelaravia/" target="_blank">Instagram</a>
+        <a href="https://wa.me/79513894443" target="_blank">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Travel Aravia. Все права защищены.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+function filterHotels(city, btn) {
+  const cards = document.querySelectorAll('.hotel-card');
+  const btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  cards.forEach(card => {
+    if (city === 'all' || card.dataset.city === city) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
 </html>
