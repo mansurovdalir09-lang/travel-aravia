@@ -15,6 +15,15 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/components.css">
+  <style>
+    /* Jeddah gallery responsive */
+    @media (max-width: 600px) {
+      .jeddah-gallery-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .jeddah-gallery-grid img { height: 240px !important; }
+    }
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Перейти к содержимому</a>
@@ -103,7 +112,7 @@
   <div class="container">
     <p class="section-label">Фотографии</p>
     <h2 class="section-title">Джидда в кадре</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:48px;">
+    <div class="jeddah-gallery-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:48px;">
       <img src="../assets/images/jeddah/jeddah-aerial.png" alt="Аэросъёмка Джидды" loading="lazy"
         style="width:100%;height:340px;object-fit:cover;border-radius:20px;display:block;">
       <img src="../assets/images/jeddah/jeddah-old-district.png" alt="Исторический район Джидды" loading="lazy"
@@ -163,11 +172,12 @@
     <p class="section-label">Познакомьтесь с городом</p>
     <h2 class="section-title">Джидда глазами Travel Aravia</h2>
     <div style="position:relative;max-width:900px;margin:48px auto 0;">
-      <video controls style="width:100%;border-radius:20px;display:block;background:#1A0F0A;">
+      <video controls poster="../assets/images/jeddah/jeddah-aerial.png"
+        style="width:100%;max-height:70vh;object-fit:contain;border-radius:20px;display:block;background:#1A0F0A;">
         <source src="../assets/videos/jeddah/jeddah-hero.mp4" type="video/mp4">
       </video>
       <!-- Cover 4K watermark top-right -->
-      <div style="position:absolute;top:0;right:0;width:110px;height:56px;background:linear-gradient(135deg,transparent 0%,rgba(26,15,10,0.9) 60%);border-top-right-radius:20px;pointer-events:none;"></div>
+      <div style="position:absolute;top:0;right:0;width:140px;height:64px;background:linear-gradient(225deg,rgba(26,15,10,0.95) 40%,transparent 100%);border-top-right-radius:20px;pointer-events:none;"></div>
     </div>
   </div>
 </section>
