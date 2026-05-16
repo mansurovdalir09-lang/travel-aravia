@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="data:,">
   <meta charset="UTF-8">
   <meta name="description" content="Туры в Джидду — жемчужину Красного моря. Исторический квартал Аль-Балад, набережная Корниш, отели и экскурсии от Travel Aravia.">
   <meta name="keywords" content="туры в Джидду, Джидда Саудовская Аравия, Аль-Балад, Красное море, Travel Aravia Джидда">
@@ -24,7 +26,14 @@
     </a>
     <nav class="header__nav">
       <a href="../tours.html">Туры</a>
-      <a href="../destinations/riyadh.html">Направления</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown__trigger">Направления</button>
+        <div class="nav-dropdown__menu">
+          <a href="../destinations/riyadh.html">Эр-Рияд</a>
+          <a href="../destinations/jeddah.html">Джидда</a>
+          <a href="../destinations/al-ula.html">Аль-Уля</a>
+        </div>
+      </div>
       <a href="../events.html">Мероприятия</a>
       <a href="../hotels.html">Отели</a>
       <a href="../tour-builder.html">Собрать тур</a>
@@ -40,8 +49,17 @@
 
 <main id="main-content">
 <section style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
-  <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.95) 0%,rgba(26,15,10,0.3) 60%,transparent 100%);"></div>
-  <div class="container" style="position:relative;z-index:1;">
+  <!-- Jeddah hero video (horizontal) -->
+  <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
+    <video autoplay muted loop playsinline
+      style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);object-fit:cover;">
+      <source src="../assets/videos/jeddah/jeddah-hero.mp4" type="video/mp4">
+    </video>
+    <!-- Cover 4K watermark top-right corner -->
+    <div style="position:absolute;top:0;right:0;width:120px;height:60px;background:linear-gradient(135deg,transparent 0%,rgba(26,15,10,0.92) 60%);z-index:1;"></div>
+  </div>
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,15,10,0.75) 0%,rgba(26,15,10,0.45) 50%,rgba(92,45,26,0.2) 100%);"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <p class="section-label">Жемчужина Красного моря</p>
     <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(48px,7vw,96px);color:#fff;line-height:1.05;margin-bottom:20px;">Джидда</h1>
     <p style="font-size:18px;color:var(--color-sand);max-width:560px;line-height:1.7;margin-bottom:40px;">Уютные улочки Al-Balad, набережная Корниш, плавучая мечеть Аль-Рахма и ворота в Мекку и Медину.</p>
@@ -76,6 +94,22 @@
           <div style="color:var(--color-sand);font-size:14px;">до Мекки</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Jeddah Photo Gallery -->
+<section class="section" style="background:#120A07;padding:80px 0;">
+  <div class="container">
+    <p class="section-label">Фотографии</p>
+    <h2 class="section-title">Джидда в кадре</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:48px;">
+      <img src="../assets/images/jeddah/jeddah-aerial.png" alt="Аэросъёмка Джидды" loading="lazy"
+        style="width:100%;height:340px;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/jeddah/jeddah-old-district.png" alt="Исторический район Джидды" loading="lazy"
+        style="width:100%;height:340px;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/jeddah/jeddah-train.jpg" alt="Поезд Джидды" loading="lazy"
+        style="width:100%;height:340px;object-fit:cover;border-radius:20px;display:block;">
     </div>
   </div>
 </section>
@@ -128,9 +162,13 @@
   <div class="container">
     <p class="section-label">Познакомьтесь с городом</p>
     <h2 class="section-title">Джидда глазами Travel Aravia</h2>
-    <video controls style="width:100%;max-width:800px;max-height:85vh;border-radius:16px;display:block;margin:80px auto 0;">
-      <source src="../assets/videos/jeddah.mp4" type="video/mp4">
-    </video>
+    <div style="position:relative;max-width:900px;margin:48px auto 0;">
+      <video controls style="width:100%;border-radius:20px;display:block;background:#1A0F0A;">
+        <source src="../assets/videos/jeddah/jeddah-hero.mp4" type="video/mp4">
+      </video>
+      <!-- Cover 4K watermark top-right -->
+      <div style="position:absolute;top:0;right:0;width:110px;height:56px;background:linear-gradient(135deg,transparent 0%,rgba(26,15,10,0.9) 60%);border-top-right-radius:20px;pointer-events:none;"></div>
+    </div>
   </div>
 </section>
 
@@ -163,14 +201,21 @@
         <a href="../hotels.html">Отели</a>
         <a href="../tour-builder.html">Собрать тур</a>
       </div>
+      <div class="footer__links">
+        <h4>Документы</h4>
+        <a href="../legal.html#offer" style="color:#C4875A;">Публичная оферта</a>
+        <a href="../legal.html#privacy" style="color:#C4875A;">Политика персональных данных</a>
+        <a href="../legal.html#consent-pd" style="color:#C4875A;">Согласие на обработку ПДн</a>
+      </div>
       <div class="footer__contacts">
         <h4>Контакты</h4>
         <a href="https://www.instagram.com/travelaravia/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/79513894443" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/79285002070" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:visit.aravia@gmail.com">visit.aravia@gmail.com</a>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Travel Aravia. Все права защищены.</p>
+      <p>© 2026 Travel Aravia. Все права защищены. | <a href="../legal.html#offer" style="color:#C4875A;">Оферта</a> | <a href="../legal.html#privacy" style="color:#C4875A;">Конфиденциальность</a></p>
     </div>
   </div>
 </footer>
@@ -178,7 +223,12 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="../tours.html">Туры</a>
-    <a href="../destinations/riyadh.html">Направления</a>
+    <div class="mobile-menu__group">
+      <span class="mobile-menu__label">Направления</span>
+      <a href="../destinations/riyadh.html" class="mobile-menu__sub">Эр-Рияд</a>
+      <a href="../destinations/jeddah.html" class="mobile-menu__sub">Джидда</a>
+      <a href="../destinations/al-ula.html" class="mobile-menu__sub">Аль-Уля</a>
+    </div>
     <a href="../events.html">Мероприятия</a>
     <a href="../hotels.html">Отели</a>
     <a href="../tour-builder.html">Собрать тур</a>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="data:,">
   <meta charset="UTF-8">
   <meta name="description" content="Туры в Эр-Рияд — столицу Саудовской Аравии. Достопримечательности, отели, экскурсии и маршруты по Эр-Рияду от Travel Aravia.">
   <meta name="keywords" content="туры в Эр-Рияд, Эр-Рияд Саудовская Аравия, достопримечательности Эр-Рияда, Travel Aravia Эр-Рияд">
@@ -13,6 +15,34 @@
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/components.css">
+  <style>
+    /* Riyadh hero: portrait video rotated to landscape */
+    #riyadhHeroVideo {
+      width: 56.25vw;
+      height: 100vw;
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+    @media (max-width: 768px) {
+      #riyadhHeroVideo {
+        width: 100%;
+        height: 100%;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+      }
+      .riyadh-gallery-main {
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: auto !important;
+      }
+      .riyadh-gallery-main img:first-child { grid-row: auto !important; grid-column: 1/-1 !important; height: 260px !important; }
+      .riyadh-gallery-row2 { grid-template-columns: 1fr 1fr !important; }
+      .riyadh-video-main { grid-template-columns: 1fr !important; }
+      .riyadh-video-row2 { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .riyadh-gallery-main { grid-template-columns: 1fr !important; }
+      .riyadh-gallery-row2 { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Перейти к содержимому</a>
@@ -24,7 +54,14 @@
     </a>
     <nav class="header__nav">
       <a href="../tours.html">Туры</a>
-      <a href="../destinations/riyadh.html">Направления</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown__trigger">Направления</button>
+        <div class="nav-dropdown__menu">
+          <a href="../destinations/riyadh.html">Эр-Рияд</a>
+          <a href="../destinations/jeddah.html">Джидда</a>
+          <a href="../destinations/al-ula.html">Аль-Уля</a>
+        </div>
+      </div>
       <a href="../events.html">Мероприятия</a>
       <a href="../hotels.html">Отели</a>
       <a href="../tour-builder.html">Собрать тур</a>
@@ -40,8 +77,12 @@
 
 <main id="main-content">
 <section class="dest-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
-  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(26,15,10,0.95) 0%, rgba(26,15,10,0.3) 60%, transparent 100%);"></div>
-  <div class="container" style="position:relative;z-index:1;">
+  <!-- Portrait Instagram video rotated to landscape fill -->
+  <video autoplay muted loop playsinline id="riyadhHeroVideo" style="position:absolute;top:50%;left:50%;width:56.25vw;height:100vw;-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg);object-fit:cover;z-index:0;pointer-events:none;">
+    <source src="../assets/videos/riyadh/riyadh-hero.mp4" type="video/mp4">
+  </video>
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,15,10,0.75) 0%,rgba(26,15,10,0.45) 50%,rgba(92,45,26,0.25) 100%);"></div>
+  <div class="container" style="position:relative;z-index:2;">
     <p class="section-label">Столица Саудовской Аравии</p>
     <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(48px,7vw,96px);color:#fff;line-height:1.05;margin-bottom:20px;">Эр-Рияд</h1>
     <p style="font-size:18px;color:var(--color-sand);max-width:560px;line-height:1.7;margin-bottom:40px;">Энергичный город который сочетает роскошь с историей, традиции с современностью. Небоскрёбы рядом с древними кварталами.</p>
@@ -76,6 +117,38 @@
           <div style="color:var(--color-sand);font-size:14px;">Vision цель</div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo Gallery -->
+<section class="section" style="background:#120A07;padding:80px 0;">
+  <div class="container">
+    <p class="section-label">Фотографии</p>
+    <h2 class="section-title">Эр-Рияд в кадре</h2>
+    <!-- Mosaic grid: 1 large + 2 small / 3 equal / 2 tall + 1 -->
+    <div class="riyadh-gallery-main" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:320px 260px;gap:12px;margin-top:48px;">
+      <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy"
+        style="grid-row:1/3;width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-tower-night.jpg" alt="Башня ночью" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-night.jpg" alt="Ночной Эр-Рияд" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-king-fahd.jpg" alt="Бизнес-центр Короля Фахда" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
+    </div>
+    <!-- Second row -->
+    <div class="riyadh-gallery-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:12px;">
+      <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy"
+        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy"
+        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-metro.jpg" alt="Метро Эр-Рияда" loading="lazy"
+        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
+      <img src="../assets/images/riyadh/riyadh-tower.jpg" alt="Башня Аль-Файсалия" loading="lazy"
+        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
     </div>
   </div>
 </section>
@@ -131,6 +204,47 @@
   </div>
 </section>
 
+<!-- Video Highlights -->
+<section class="section" style="background:#120A07;padding:80px 0;">
+  <div class="container">
+    <p class="section-label">Атмосфера города</p>
+    <h2 class="section-title">Эр-Рияд в движении</h2>
+    <div class="riyadh-video-main" style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:48px;">
+      <!-- Main video: evening city -->
+      <video controls muted loop playsinline preload="none"
+        style="width:100%;height:420px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;">
+        <source src="../assets/videos/riyadh/riyadh-evening.mp4" type="video/mp4">
+      </video>
+      <!-- Side videos stacked -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <video controls muted loop playsinline preload="none"
+          style="width:100%;height:200px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;flex:1;">
+          <source src="../assets/videos/riyadh/riyadh-metro.mp4" type="video/mp4">
+        </video>
+        <video controls muted loop playsinline preload="none"
+          style="width:100%;height:200px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;flex:1;">
+          <source src="../assets/videos/riyadh/riyadh-metro-night.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!-- Second row of videos -->
+    <div class="riyadh-video-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
+      <video controls muted loop playsinline preload="none"
+        style="width:100%;height:220px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;">
+        <source src="../assets/videos/riyadh/riyadh-view.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline preload="none"
+        style="width:100%;height:220px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;">
+        <source src="../assets/videos/riyadh/riyadh-heart.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline preload="none"
+        style="width:100%;height:220px;object-fit:cover;border-radius:20px;background:#1A0F0A;display:block;">
+        <source src="../assets/videos/riyadh/riyadh-view-2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 <section class="section">
   <div class="container" style="text-align:center;">
     <p class="section-label">Готовы к поездке?</p>
@@ -160,14 +274,21 @@
         <a href="../hotels.html">Отели</a>
         <a href="../tour-builder.html">Собрать тур</a>
       </div>
+      <div class="footer__links">
+        <h4>Документы</h4>
+        <a href="../legal.html#offer" style="color:#C4875A;">Публичная оферта</a>
+        <a href="../legal.html#privacy" style="color:#C4875A;">Политика персональных данных</a>
+        <a href="../legal.html#consent-pd" style="color:#C4875A;">Согласие на обработку ПДн</a>
+      </div>
       <div class="footer__contacts">
         <h4>Контакты</h4>
         <a href="https://www.instagram.com/travelaravia/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/79513894443" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/79285002070" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:visit.aravia@gmail.com">visit.aravia@gmail.com</a>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Travel Aravia. Все права защищены.</p>
+      <p>© 2026 Travel Aravia. Все права защищены. | <a href="../legal.html#offer" style="color:#C4875A;">Оферта</a> | <a href="../legal.html#privacy" style="color:#C4875A;">Конфиденциальность</a></p>
     </div>
   </div>
 </footer>
@@ -175,7 +296,12 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="../tours.html">Туры</a>
-    <a href="../destinations/riyadh.html">Направления</a>
+    <div class="mobile-menu__group">
+      <span class="mobile-menu__label">Направления</span>
+      <a href="../destinations/riyadh.html" class="mobile-menu__sub">Эр-Рияд</a>
+      <a href="../destinations/jeddah.html" class="mobile-menu__sub">Джидда</a>
+      <a href="../destinations/al-ula.html" class="mobile-menu__sub">Аль-Уля</a>
+    </div>
     <a href="../events.html">Мероприятия</a>
     <a href="../hotels.html">Отели</a>
     <a href="../tour-builder.html">Собрать тур</a>
