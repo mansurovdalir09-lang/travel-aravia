@@ -2,3 +2,15 @@
 Thumbs.db
 *.log
 node_modules/
+.claude/skills/design-review
+.claude/skills/ui-ux-pro-max
+.playwright-mcp/
+riyadh-current.jpeg
+riyadh-after.jpeg
+riyadh-v2.jpeg
+riyadh-v3.jpeg
+github-actions.jpeg
+actions-error.jpeg
+actions-run26.jpeg
+actions-v2.jpeg
+actions-v3.jpeg
