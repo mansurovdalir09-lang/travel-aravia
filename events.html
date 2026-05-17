@@ -236,8 +236,14 @@ document.querySelectorAll('.event-card').forEach(card => {
   const date = card.querySelector('.event-card__date')?.textContent.replace('📅', '').trim() || '';
   btn.addEventListener('click', function(e) {
     e.preventDefault();
+    let events = [];
+    try { events = JSON.parse(localStorage.getItem('ta_events_list') || '[]'); } catch(e){}
+    if (!events.find(ev => ev.name === name)) events.push({ name, date });
+    localStorage.setItem('ta_events_list', JSON.stringify(events));
     localStorage.setItem('ta_selected_event', JSON.stringify({ name, date }));
-    window.location.href = 'tour-builder.html';
+    const added = this;
+    added.textContent = '✓ Добавлено';
+    setTimeout(() => { added.textContent = 'Организовать поездку'; }, 1800);
   });
 });
 </script>

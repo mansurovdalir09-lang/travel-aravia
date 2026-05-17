@@ -288,8 +288,15 @@ document.querySelectorAll('.hotel-card').forEach(card => {
   const city = card.dataset.city || '';
   btn.addEventListener('click', function(e) {
     e.preventDefault();
-    localStorage.setItem('ta_selected_hotel', JSON.stringify({ name, destination: hotelDestMap[city] || city }));
-    window.location.href = 'tour-builder.html';
+    const hotelObj = { name, destination: hotelDestMap[city] || city };
+    let hotels = [];
+    try { hotels = JSON.parse(localStorage.getItem('ta_hotels_list') || '[]'); } catch(e){}
+    if (!hotels.find(h => h.name === name)) hotels.push(hotelObj);
+    localStorage.setItem('ta_hotels_list', JSON.stringify(hotels));
+    localStorage.setItem('ta_selected_hotel', JSON.stringify(hotelObj));
+    const added = this;
+    added.textContent = '✓ Добавлено';
+    setTimeout(() => { added.textContent = 'Добавить в тур'; }, 1800);
   });
 });
 </script>

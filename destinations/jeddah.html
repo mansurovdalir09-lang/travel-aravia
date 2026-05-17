@@ -25,6 +25,9 @@
       }
       .jeddah-gallery-grid img { height: 240px !important; }
     }
+    @media (max-width: 768px) {
+      .jeddah-about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    }
   </style>
 </head>
 <body>
@@ -63,11 +66,9 @@
   <!-- Jeddah hero video (horizontal) -->
   <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
     <video autoplay muted loop playsinline
-      style="position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);object-fit:cover;">
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;">
       <source src="../assets/videos/jeddah/jeddah-hero.mp4" type="video/mp4">
     </video>
-    <!-- Cover 4K watermark top-right corner -->
-    <div style="position:absolute;top:0;right:0;width:120px;height:60px;background:linear-gradient(135deg,transparent 0%,rgba(26,15,10,0.92) 60%);z-index:1;"></div>
   </div>
   <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,15,10,0.75) 0%,rgba(26,15,10,0.45) 50%,rgba(92,45,26,0.2) 100%);"></div>
   <div class="container" style="position:relative;z-index:2;">
@@ -82,7 +83,7 @@
   <div class="container">
     <p class="section-label">О городе</p>
     <h2 class="section-title">Джидда — морские ворота Аравии</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
+    <div class="jeddah-about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
       <div>
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;margin-bottom:24px;">Джидда — второй по величине город Саудовской Аравии и главный морской порт на Красном море. Здесь уживаются исторический квартал Al-Balad и ультрасовременная набережная Корниш.</p>
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;">Город служит воротами для миллионов паломников направляющихся в Мекку и Медину. Это место где история, культура и современность переплетаются самым удивительным образом.</p>
@@ -246,5 +247,11 @@
 </div>
 
 <script src="../js/main.js"></script>
+<script>
+document.querySelectorAll('video').forEach(function(v) {
+  v.addEventListener('loadedmetadata', function() { this.currentTime = 15; });
+  v.addEventListener('timeupdate', function() { if (this.currentTime > 45) this.currentTime = 15; });
+});
+</script>
 </body>
 </html>

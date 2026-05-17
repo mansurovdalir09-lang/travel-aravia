@@ -37,6 +37,10 @@
       .al-ula-gallery-main img { height: 200px !important; }
       .al-ula-gallery-row2 { grid-template-columns: 1fr 1fr !important; }
     }
+    @media (max-width: 768px) {
+      .al-ula-about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+      .section-title { text-align: center !important; }
+    }
   </style>
 </head>
 <body>
@@ -75,7 +79,7 @@
   <video class="hero__video" id="heroVideo" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
     <source src="../assets/videos/al-ula.mp4" type="video/mp4">
   </video>
-  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(26,15,10,0.95) 0%, rgba(26,15,10,0.3) 60%, transparent 100%);"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(26,15,10,0.82) 0%, rgba(26,15,10,0.2) 30%, rgba(26,15,10,0.25) 60%, rgba(26,15,10,0.95) 100%);"></div>
   <div class="container" style="position:relative;z-index:1;">
     <p class="section-label">Древние цивилизации</p>
     <h1 style="font-family:'Cormorant Garant',serif;font-size:clamp(48px,7vw,96px);color:#fff;line-height:1.05;margin-bottom:20px;">Аль-Уля</h1>
@@ -92,7 +96,7 @@
   <div class="container">
     <p class="section-label">О месте</p>
     <h2 class="section-title">Почему Аль-Уля уникальна?</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
+    <div class="al-ula-about-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px;align-items:center;">
       <div>
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;margin-bottom:24px;">Аль-Уля — одно из самых захватывающих мест на Земле. Здесь находятся набатейские гробницы Хегры (Мадаин Салих) — объект наследия ЮНЕСКО, сравнимый с Петрой в Иордании.</p>
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;">Скала Слон, зеркальное здание Марайя посреди пустыни, старый город с тысячелетней историей — всё это ждёт вас в Аль-Уле.</p>

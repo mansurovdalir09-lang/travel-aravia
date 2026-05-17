@@ -18,6 +18,17 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/components.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    @media (max-width: 768px) {
+      #builderGrid { grid-template-columns: 1fr !important; gap: 0 !important; }
+      .builder__summary { margin-top: 32px; }
+      #step1 .dest-cards-grid { grid-template-columns: 1fr 1fr !important; }
+      #step2 .date-grid { grid-template-columns: 1fr !important; }
+      #step3 .tour-cards-grid { grid-template-columns: 1fr !important; }
+      #step4 .hotel-cards-grid { grid-template-columns: 1fr !important; }
+      #step5 .contact-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Перейти к содержимому</a>
@@ -71,7 +82,7 @@
             <div class="builder__step-num">1</div>
             <h2>Выберите направление</h2>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
+          <div class="dest-cards-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;">
             <div class="destination-option" onclick="selectDestination(this,'Эр-Рияд')">
               <img src="assets/images/elephant-rock.jpg" alt="Эр-Рияд" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
               <h4>Эр-Рияд</h4>
@@ -112,7 +123,7 @@
             <div class="builder__step-num">2</div>
             <h2>Выберите даты и количество дней</h2>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;">
+          <div class="date-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:24px;">
             <div>
               <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Дата выезда</label>
               <input type="date" id="dateFrom" onchange="updateTour()" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
@@ -141,7 +152,7 @@
             <div class="builder__step-num">3</div>
             <h2>Выберите отель</h2>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+          <div class="hotel-cards-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
             <div class="hotel-option" onclick="selectHotel(this,'Эконом (3★)')">
               <h4>Эконом</h4>
               <p style="font-size:13px;color:var(--color-sand);">Отели 3★ — комфортно и доступно</p>
@@ -223,7 +234,7 @@
             <div class="builder__step-num">5</div>
             <h2>Ваши контакты</h2>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
+          <div class="contact-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;">
             <div>
               <label style="font-size:13px;color:var(--color-sand);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:8px;">Имя</label>
               <input type="text" id="clientName" required placeholder="Ваше имя *" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(196,135,90,0.3);border-radius:12px;padding:14px 16px;color:white;font-size:15px;">
@@ -339,7 +350,7 @@
 
 <script src="js/main.js"></script>
 <script>
-let tourData = { destination:'', dateFrom:'', dateTo:'', days:0, tourists:'1', hotel:'', services:[], preTour:'', preTourPrice:'', preTourFeatures:[], preHotel:'', preHotelDest:'', preEvent:'', preEventDate:'' };
+let tourData = { destination:'', dateFrom:'', dateTo:'', days:0, tourists:'1', hotel:'', services:[], preTour:'', preTourPrice:'', preTourFeatures:[], preHotels:[], preHotel:'', preHotelDest:'', preEvents:[], preEvent:'', preEventDate:'' };
 
 function saveTourDraft() {
   localStorage.setItem('ta_tour_draft', JSON.stringify(tourData));
@@ -350,6 +361,26 @@ document.addEventListener('DOMContentLoaded', function() {
   const selTour = localStorage.getItem('ta_selected_tour');
   const selHotel = localStorage.getItem('ta_selected_hotel');
   const selEvent = localStorage.getItem('ta_selected_event');
+
+  // Load accumulated lists from events/hotels pages
+  try {
+    const hotelsList = JSON.parse(localStorage.getItem('ta_hotels_list') || '[]');
+    if (hotelsList.length) {
+      tourData.preHotels = hotelsList.map(h => h.name);
+      tourData.preHotel = tourData.preHotels.join(', ');
+      tourData.preHotelDest = hotelsList[0].destination || '';
+      localStorage.removeItem('ta_hotels_list');
+    }
+  } catch(e) {}
+  try {
+    const eventsList = JSON.parse(localStorage.getItem('ta_events_list') || '[]');
+    if (eventsList.length) {
+      tourData.preEvents = eventsList;
+      tourData.preEvent = eventsList.map(e => e.name).join(', ');
+      tourData.preEventDate = eventsList.map(e => e.date).filter(Boolean).join(', ');
+      localStorage.removeItem('ta_events_list');
+    }
+  } catch(e) {}
 
   // Restore saved draft (only when no fresh selection from another page)
   if (!selTour && !selHotel && !selEvent) {
@@ -407,8 +438,10 @@ document.addEventListener('DOMContentLoaded', function() {
   if (selHotel) {
     try {
       const h = JSON.parse(selHotel);
-      tourData.preHotel = h.name || '';
-      tourData.preHotelDest = h.destination || '';
+      const hName = h.name || '';
+      if (hName && !tourData.preHotels.includes(hName)) tourData.preHotels.push(hName);
+      tourData.preHotel = tourData.preHotels.join(', ');
+      tourData.preHotelDest = h.destination || tourData.preHotelDest;
       if (!tourData.destination && h.destination) {
         document.querySelectorAll('.destination-option').forEach(opt => {
           if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes(`'${h.destination}'`)) {
@@ -424,8 +457,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (selEvent) {
     try {
       const ev = JSON.parse(selEvent);
-      tourData.preEvent = ev.name || '';
-      tourData.preEventDate = ev.date || '';
+      const evName = ev.name || '';
+      if (evName && !tourData.preEvents.find(e => e.name === evName)) {
+        tourData.preEvents.push({ name: evName, date: ev.date || '' });
+      }
+      tourData.preEvent = tourData.preEvents.map(e => e.name).join(', ');
+      tourData.preEventDate = tourData.preEvents.map(e => e.date).filter(Boolean).join(', ');
     } catch(e) {}
     localStorage.removeItem('ta_selected_event');
   }
@@ -443,9 +480,11 @@ function selectDestination(el, name) {
 }
 
 function selectHotel(el, name) {
-  document.querySelectorAll('.hotel-option').forEach(d => d.classList.remove('selected'));
-  el.classList.add('selected');
-  tourData.hotel = name;
+  el.classList.toggle('selected');
+  const idx = tourData.preHotels.indexOf(name);
+  if (idx === -1) tourData.preHotels.push(name);
+  else tourData.preHotels.splice(idx, 1);
+  tourData.hotel = tourData.preHotels.join(', ');
   saveTourDraft();
   updateSummary();
 }
@@ -472,13 +511,17 @@ function updateTour() {
 function updateSummary() {
   const c = document.getElementById('summaryContent');
   const w = document.getElementById('summaryWhatsapp');
-  const hasAny = tourData.destination || tourData.preTour || tourData.preHotel || tourData.preEvent;
+  const hasAny = tourData.destination || tourData.preTour || tourData.preHotels.length || tourData.preEvents.length || tourData.preHotel || tourData.preEvent;
   if (!hasAny) return;
   let html = '';
   if (tourData.preTour) html += `<div class="summary-item"><span>🗺️ Выбранный тур</span><strong>${tourData.preTour}${tourData.preTourPrice ? ' — от ' + tourData.preTourPrice : ''}</strong></div>`;
   if (tourData.preTourFeatures && tourData.preTourFeatures.length) html += `<div class="summary-item"><span>✅ Включено в тур</span><strong>${tourData.preTourFeatures.join(' · ')}</strong></div>`;
-  if (tourData.preHotel) html += `<div class="summary-item"><span>🏨 Выбранный отель</span><strong>${tourData.preHotel}</strong></div>`;
-  if (tourData.preEvent) html += `<div class="summary-item"><span>🎉 Мероприятие</span><strong>${tourData.preEvent}</strong></div>`;
+  if (tourData.preHotels.length) {
+    tourData.preHotels.forEach((h,i) => { html += `<div class="summary-item"><span>🏨 Отель ${i+1}</span><strong>${h}</strong></div>`; });
+  } else if (tourData.preHotel) html += `<div class="summary-item"><span>🏨 Отель</span><strong>${tourData.preHotel}</strong></div>`;
+  if (tourData.preEvents.length) {
+    tourData.preEvents.forEach((e,i) => { html += `<div class="summary-item"><span>🎉 Мероприятие ${i+1}</span><strong>${e.name}${e.date ? ' · ' + e.date : ''}</strong></div>`; });
+  } else if (tourData.preEvent) html += `<div class="summary-item"><span>🎉 Мероприятие</span><strong>${tourData.preEvent}</strong></div>`;
   if (tourData.preEventDate) html += `<div class="summary-item"><span>📅 Дата мероприятия</span><strong>${tourData.preEventDate}</strong></div>`;
   if (tourData.destination) html += `<div class="summary-item"><span>📍 Направление</span><strong>${tourData.destination}</strong></div>`;
   if (tourData.dateFrom) html += `<div class="summary-item"><span>📅 Дата выезда</span><strong>${new Date(tourData.dateFrom).toLocaleDateString('ru')}</strong></div>`;
@@ -499,9 +542,10 @@ function sendToWhatsapp() {
   if (tourData.preTour) msg += `🗺️ Тур: ${tourData.preTour}\n`;
   if (tourData.preTourPrice) msg += `💰 Стоимость: ${tourData.preTourPrice} за человека\n`;
   if (tourData.preTourFeatures && tourData.preTourFeatures.length) msg += `✅ Включено: ${tourData.preTourFeatures.join(', ')}\n`;
-  if (tourData.preHotel) msg += `🏨 Отель: ${tourData.preHotel}\n`;
-  if (tourData.preEvent) msg += `🎉 Мероприятие: ${tourData.preEvent}\n`;
-  if (tourData.preEventDate) msg += `📅 Дата мероприятия: ${tourData.preEventDate}\n`;
+  if (tourData.preHotels.length) tourData.preHotels.forEach((h,i) => { msg += `🏨 Отель ${i+1}: ${h}\n`; });
+  else if (tourData.preHotel) msg += `🏨 Отель: ${tourData.preHotel}\n`;
+  if (tourData.preEvents.length) tourData.preEvents.forEach((e,i) => { msg += `🎉 Мероприятие ${i+1}: ${e.name}${e.date ? ' · ' + e.date : ''}\n`; });
+  else if (tourData.preEvent) msg += `🎉 Мероприятие: ${tourData.preEvent}${tourData.preEventDate ? ' · ' + tourData.preEventDate : ''}\n`;
   if (tourData.destination) msg += `📍 Направление: ${tourData.destination}\n`;
   if (tourData.dateFrom) msg += `📅 Выезд: ${new Date(tourData.dateFrom).toLocaleDateString('ru')}\n`;
   if (tourData.dateTo) msg += `📅 Возврат: ${new Date(tourData.dateTo).toLocaleDateString('ru')}\n`;
@@ -516,7 +560,7 @@ function sendToWhatsapp() {
 }
 
 function downloadPDF() {
-  if (!tourData.destination && !tourData.preTour && !tourData.preHotel && !tourData.preEvent) {
+  if (!tourData.destination && !tourData.preTour && !tourData.preHotels.length && !tourData.preHotel && !tourData.preEvents.length && !tourData.preEvent) {
     alert('Выберите направление, тур или мероприятие для создания PDF');
     return;
   }
@@ -684,7 +728,7 @@ function submitTour() {
   if (document.getElementById('honeypot').value !== '') return;
   const name = document.getElementById('clientName').value;
   const phone = document.getElementById('clientPhone').value;
-  if (!tourData.destination && !tourData.preTour && !tourData.preHotel && !tourData.preEvent) { alert('Выберите направление или тур'); return; }
+  if (!tourData.destination && !tourData.preTour && !tourData.preHotels.length && !tourData.preHotel && !tourData.preEvents.length && !tourData.preEvent) { alert('Выберите направление или тур'); return; }
   if (!name) { alert('Введите ваше имя — поле обязательно'); return; }
   if (!phone) { alert('Введите номер WhatsApp — поле обязательно'); return; }
   if (!document.getElementById('consentPd').checked) { alert('Необходимо дать согласие на обработку персональных данных'); return; }

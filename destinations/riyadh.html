@@ -106,7 +106,7 @@
 </header>
 
 <main id="main-content">
-<section class="dest-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
+<section class="dest-hero riyadh-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
   <!-- Portrait Instagram video rotated to landscape fill -->
   <video autoplay muted loop playsinline id="riyadhHeroVideo" style="position:absolute;top:50%;left:50%;width:56.25vw;height:100vw;-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg);object-fit:cover;z-index:0;pointer-events:none;">
     <source src="../assets/videos/riyadh/riyadh-hero.mp4" type="video/mp4">
@@ -153,32 +153,24 @@
 
 <!-- Photo Gallery -->
 <section class="section" style="background:#120A07;padding:80px 0;">
-  <div class="container">
+  <div class="container" style="padding-left:24px;padding-right:24px;">
     <p class="section-label">Фотографии</p>
     <h2 class="section-title">Эр-Рияд в кадре</h2>
-    <!-- Mosaic grid: 1 large + 2 small / 3 equal / 2 tall + 1 -->
-    <div class="riyadh-gallery-main" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:320px 260px;gap:12px;margin-top:48px;overflow:hidden;border-radius:4px;">
-      <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy"
-        style="grid-row:1/3;width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy"
-        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-tower-night.jpg" alt="Башня ночью" loading="lazy"
-        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-night.jpg" alt="Ночной Эр-Рияд" loading="lazy"
-        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-king-fahd.jpg" alt="Бизнес-центр Короля Фахда" loading="lazy"
-        style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
-    </div>
-    <!-- Second row -->
-    <div class="riyadh-gallery-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:12px;overflow:hidden;border-radius:4px;">
-      <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy"
-        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy"
-        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-metro.jpg" alt="Метро Эр-Рияда" loading="lazy"
-        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
-      <img src="../assets/images/riyadh/riyadh-tower.jpg" alt="Башня Аль-Файсалия" loading="lazy"
-        style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
+    <div class="photo-slider" id="riyadhSlider">
+      <div class="photo-slider__track" id="riyadhTrack">
+        <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-tower-night.jpg" alt="Башня ночью" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-night.jpg" alt="Ночной Эр-Рияд" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-king-fahd.jpg" alt="Бизнес-центр Короля Фахда" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-metro.jpg" alt="Метро Эр-Рияда" loading="lazy">
+        <img src="../assets/images/riyadh/riyadh-tower.jpg" alt="Башня Аль-Файсалия" loading="lazy">
+      </div>
+      <button class="slider-btn slider-btn--prev" onclick="slidePhoto('riyadhTrack', -1)" aria-label="Предыдущее фото">&#8592;</button>
+      <button class="slider-btn slider-btn--next" onclick="slidePhoto('riyadhTrack', 1)" aria-label="Следующее фото">&#8594;</button>
+      <div class="slider-dots" id="riyadhDots"></div>
     </div>
   </div>
 </section>
@@ -239,7 +231,7 @@
   <div class="container">
     <p class="section-label">Атмосфера города</p>
     <h2 class="section-title">Эр-Рияд в движении</h2>
-    <div class="riyadh-video-main" style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-top:48px;">
+    <div class="riyadh-video-main riyadh-videos-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;">
       <!-- Main video: evening city -->
       <video controls muted loop playsinline preload="none"
         poster="../assets/images/riyadh/riyadh-night.jpg"

@@ -167,8 +167,10 @@
   background: var(--color-dark);
   z-index: 999;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: auto;
+  padding: 80px 24px 48px;
   transform: translateX(-100%);
   transition: transform 0.4s ease;
 }
@@ -180,8 +182,9 @@
 .mobile-menu__nav {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
   text-align: center;
+  width: 100%;
 }
 
 .mobile-menu__nav a {
@@ -260,6 +263,20 @@
   transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
   object-fit: cover;
   background: #000;
+}
+
+/* On mobile, viewport is portrait — don't rotate, just fill */
+@media (max-width: 768px) {
+  .hero .hero__video {
+    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
 .hero__overlay {
@@ -999,4 +1016,66 @@
   /* ЗАДАЧА 5: General mobile fixes */
   .container { padding-left: 16px !important; padding-right: 16px !important; }
   .hero__actions a { width: 100% !important; text-align: center !important; }
+
+  /* ЗАДАЧА 1: Reduce vertical white space */
+  .hero__scroll { margin-top: 16px !important; }
+  .hero-search { margin-top: 8px !important; }
+  .trust-bar { margin-top: 8px !important; }
+  .destinations { padding-top: 40px !important; }
+  .events-preview { padding-top: 40px !important; }
+  .services { padding-top: 40px !important; }
+  .section { padding: 40px 0 !important; }
+
+  /* ЗАДАЧА 2: Trust bar text sizes */
+  .trust-bar__num { font-size: 20px !important; }
+  .trust-bar__item span:last-child { font-size: 9px !important; letter-spacing: 1px !important; }
+
+  /* ЗАДАЧА 4: Riyadh hero video horizontal on mobile */
+  .riyadh-hero video { transform: rotate(90deg) scale(1.78) !important; object-fit: cover !important; }
+
+  /* ЗАДАЧА 7: CTA blocks centering */
+  .section-title { text-align: center !important; }
+  .section-label { text-align: center !important; }
+
+  /* ЗАДАЧА 8: About-city grid mobile */
+  .about-city-grid,
+  .jeddah-about-grid,
+  .al-ula-about-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
 }
+
+/* ЗАДАЧА 5: Photo slider */
+.photo-slider { position: relative; overflow: hidden; border-radius: 16px; margin-top: 48px; }
+.photo-slider__track { display: flex; transition: transform 0.4s ease; }
+.photo-slider__track img { min-width: 100%; height: 400px; object-fit: cover; flex-shrink: 0; border-radius: 0; }
+.slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(196,135,90,0.85); border: none; color: white; width: 44px; height: 44px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.slider-btn:hover { background: var(--color-accent); }
+.slider-btn--prev { left: 12px; }
+.slider-btn--next { right: 12px; }
+.slider-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+.slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; border: none; padding: 0; transition: background 0.2s; }
+.slider-dot.active { background: var(--color-accent); }
+@media (max-width: 768px) {
+  .photo-slider__track img { height: 260px !important; }
+}
+
+/* ЗАДАЧА 6: Riyadh videos grid */
+.riyadh-videos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.riyadh-videos-grid video {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+  .riyadh-videos-grid { grid-template-columns: 1fr !important; }
+  .riyadh-videos-grid video { height: 200px !important; }
+}
+
+/* ЗАДАЧА 10: Footer scroll */
+body { min-height: 100vh; }
+.footer { position: relative; z-index: 1; }
