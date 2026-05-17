@@ -170,7 +170,7 @@
   align-items: flex-start;
   justify-content: center;
   overflow-y: auto;
-  padding: 80px 24px 48px;
+  padding: 100px 24px 48px;
   transform: translateX(-100%);
   transition: transform 0.4s ease;
 }
@@ -182,7 +182,7 @@
 .mobile-menu__nav {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 32px;
   text-align: center;
   width: 100%;
 }
@@ -202,7 +202,7 @@
 .mobile-menu__group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 32px;
   align-items: center;
 }
 
@@ -1027,8 +1027,8 @@
   .btn-primary, .btn-outline { margin-top: 8px; }
 
   /* Trust bar text sizes */
-  .trust-bar__num { font-size: 20px !important; }
-  .trust-bar__item span:last-child { font-size: 9px !important; letter-spacing: 1px !important; }
+  .trust-bar__num { font-size: 36px !important; }
+  .trust-bar__item span:last-child { font-size: 11px !important; letter-spacing: 1.5px !important; }
 
   /* Riyadh hero: portrait video fills mobile naturally */
   .riyadh-hero video, #riyadhHeroVideo { width: 100% !important; height: 100% !important; transform: translateX(-50%) !important; object-fit: cover !important; }
@@ -1046,7 +1046,7 @@
   .city-stats-grid .services__card > div:first-child { font-size: 32px !important; }
 
   /* Mobile menu items */
-  .mobile-menu__nav a { font-size: 32px !important; padding: 12px 0 !important; line-height: 1.3 !important; }
+  .mobile-menu__nav a { font-size: 32px !important; line-height: 1.3 !important; }
 
   /* Jeddah hero mobile */
   .jeddah-hero { align-items: center !important; }
