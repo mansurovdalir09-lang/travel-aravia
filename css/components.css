@@ -1030,8 +1030,8 @@
   .trust-bar__num { font-size: 36px !important; }
   .trust-bar__item span:last-child { font-size: 11px !important; letter-spacing: 1.5px !important; }
 
-  /* Riyadh hero: portrait video fills mobile naturally */
-  .riyadh-hero video, #riyadhHeroVideo { width: 100% !important; height: 100% !important; transform: translateX(-50%) !important; object-fit: cover !important; }
+  /* Riyadh hero mobile: portrait video centered */
+  #riyadhHeroVideo { left: 50% !important; width: auto !important; height: 100% !important; transform: translateX(-50%) !important; object-fit: cover !important; }
 
   /* CTA blocks centering */
   .section-title { text-align: center !important; }
