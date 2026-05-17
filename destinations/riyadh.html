@@ -18,17 +18,21 @@
   <link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/components.css">
   <style>
-    /* Riyadh hero: portrait video rotated to landscape */
+    /* Riyadh hero: portrait video, shown vertically centered */
     #riyadhHeroVideo {
-      width: 56.25vw;
-      height: 100vw;
-      transform: translate(-50%, -50%) rotate(90deg);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      width: auto;
+      transform: translateX(-50%);
+      object-fit: cover;
     }
     @media (max-width: 900px) {
       #riyadhHeroVideo {
         width: 100%;
         height: 100%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         object-fit: cover;
       }
       /* Gallery: switch to 2-col and give images explicit heights */
@@ -108,7 +112,7 @@
 <main id="main-content">
 <section class="dest-hero riyadh-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
   <!-- Portrait Instagram video rotated to landscape fill -->
-  <video autoplay muted loop playsinline id="riyadhHeroVideo" style="position:absolute;top:50%;left:50%;width:56.25vw;height:100vw;-webkit-transform:translate(-50%,-50%) rotate(90deg);transform:translate(-50%,-50%) rotate(90deg);object-fit:cover;z-index:0;pointer-events:none;">
+  <video autoplay muted loop playsinline id="riyadhHeroVideo" style="position:absolute;top:0;left:50%;height:100%;width:auto;transform:translateX(-50%);object-fit:cover;z-index:0;pointer-events:none;">
     <source src="../assets/videos/riyadh/riyadh-hero.mp4" type="video/mp4">
   </video>
   <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(26,15,10,0.75) 0%,rgba(26,15,10,0.45) 50%,rgba(92,45,26,0.25) 100%);"></div>
@@ -129,7 +133,7 @@
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;margin-bottom:24px;">Эр-Рияд сочетает в себе роскошь с отдыхом, сохраняя старинные корни. Традиции с современностью, исторические места с высочайшими небоскрёбами.</p>
         <p style="font-size:17px;color:var(--color-sand);line-height:1.8;">Энергичный город который развивается в своём темпе в сочетании с религией. Есть районы где всегда проводятся уроки на религиозные темы — ты чувствуешь атмосферу студенческой учёбы.</p>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div class="city-stats-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
         <div class="services__card" style="text-align:center;">
           <div style="font-family:'Cormorant Garant',serif;font-size:48px;color:var(--color-accent);font-weight:700;">7M+</div>
           <div style="color:var(--color-sand);font-size:14px;">жителей</div>

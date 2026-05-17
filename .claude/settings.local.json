@@ -54,7 +54,11 @@
       "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" diff HEAD destinations/al-ula.html)",
       "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" show HEAD:assets/images/logo.svg)",
       "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" show 2342479 -- destinations/al-ula.html)",
-      "Bash(git rm *)"
+      "Bash(git rm *)",
+      "Bash(C:/Users/user/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe -i 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/riyadh-metro-night.mp4')",
+      "Bash(C:/Users/user/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe -i 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/riyadh-metro.mp4')",
+      "Bash(C:/Users/user/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe -i 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/riyadh-metro-night.mp4' -an -c:v copy -y 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/metro-night-tmp.mp4')",
+      "Bash(C:/Users/user/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1.1-full_build/bin/ffmpeg.exe -i 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/riyadh-metro.mp4' -af equalizer=f=660:t=o:w=1:g=-18,equalizer=f=880:t=o:w=1:g=-15,equalizer=f=1320:t=o:w=1:g=-12,equalizer=f=440:t=o:w=1:g=-10,highpass=f=100,lowpass=f=6000 -c:v copy -c:a aac -y 'C:/Users/user/Desktop/Трэвел Аравия/assets/videos/riyadh/metro-tmp.mp4')"
     ]
   }
 }
