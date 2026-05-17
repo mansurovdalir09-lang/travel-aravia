@@ -53,7 +53,8 @@
       "mcp__playwright__browser_evaluate",
       "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" diff HEAD destinations/al-ula.html)",
       "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" show HEAD:assets/images/logo.svg)",
-      "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" show 2342479 -- destinations/al-ula.html)"
+      "Bash(git -C \"C:/Users/user/Desktop/Трэвел Аравия\" show 2342479 -- destinations/al-ula.html)",
+      "Bash(git rm *)"
     ]
   }
 }

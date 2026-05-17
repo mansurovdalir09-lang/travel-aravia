@@ -105,3 +105,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+if (window.innerWidth < 768) {
+  document.querySelectorAll('.hero__video, .destinations__video').forEach(function(v) {
+    v.removeAttribute('autoplay');
+    v.setAttribute('preload', 'none');
+    v.pause();
+  });
+}
