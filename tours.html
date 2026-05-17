@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta charset="UTF-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta name="description" content="Авторские туры по Саудовской Аравии для русскоговорящих. Индивидуальные и групповые маршруты в Эр-Рияд, Джидду, Аль-Улю. Визы, трансфер, отели под ключ.">
   <meta name="keywords" content="туры по Саудовской Аравии, авторские туры КСА, Travel Aravia туры, Эр-Рияд Джидда Аль-Уля">
   <meta property="og:title" content="Туры по Саудовской Аравии — Travel Aravia">
@@ -24,7 +28,14 @@
     </a>
     <nav class="header__nav">
       <a href="tours.html">Туры</a>
-      <a href="destinations/riyadh.html">Направления</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown__trigger">Направления</button>
+        <div class="nav-dropdown__menu">
+          <a href="destinations/riyadh.html">Эр-Рияд</a>
+          <a href="destinations/jeddah.html">Джидда</a>
+          <a href="destinations/al-ula.html">Аль-Уля</a>
+        </div>
+      </div>
       <a href="events.html">Мероприятия</a>
       <a href="hotels.html">Отели</a>
       <a href="tour-builder.html">Собрать тур</a>
@@ -167,7 +178,7 @@
 
       <div class="tour-card" data-city="combined">
         <div style="position:relative;height:220px;border-radius:16px;overflow:hidden;margin-bottom:24px;">
-          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+          <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 8%;">
             <source src="assets/videos/umluj.mp4" type="video/mp4">
           </video>
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,15,10,0.8) 0%,transparent 60%);"></div>
@@ -253,14 +264,22 @@
         <a href="hotels.html">Отели</a>
         <a href="tour-builder.html">Собрать тур</a>
       </div>
+      <div class="footer__links">
+        <h4>Документы</h4>
+        <a href="legal.html#offer" style="color:#C4875A;">Публичная оферта</a>
+        <a href="legal.html#privacy" style="color:#C4875A;">Политика персональных данных</a>
+        <a href="legal.html#consent-pd" style="color:#C4875A;">Согласие на обработку ПДн</a>
+      </div>
       <div class="footer__contacts">
         <h4>Контакты</h4>
         <a href="https://www.instagram.com/travelaravia/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/79513894443" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/79285002070" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:visit.aravia@gmail.com">visit.aravia@gmail.com</a>
+        <p style="font-size:12px;color:rgba(196,135,90,0.5);margin-top:8px;">г. Махачкала, ул. Ярагского, 71а,<br>Coworking DELO, 2 этаж</p>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Travel Aravia. Все права защищены.</p>
+      <p>© 2026 Travel Aravia. Все права защищены. | <a href="legal.html#offer" style="color:#C4875A;">Оферта</a> | <a href="legal.html#privacy" style="color:#C4875A;">Конфиденциальность</a></p>
     </div>
   </div>
 </footer>
@@ -268,7 +287,12 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="tours.html">Туры</a>
-    <a href="destinations/riyadh.html">Направления</a>
+    <div class="mobile-menu__group">
+      <span class="mobile-menu__label">Направления</span>
+      <a href="destinations/riyadh.html" class="mobile-menu__sub">Эр-Рияд</a>
+      <a href="destinations/jeddah.html" class="mobile-menu__sub">Джидда</a>
+      <a href="destinations/al-ula.html" class="mobile-menu__sub">Аль-Уля</a>
+    </div>
     <a href="events.html">Мероприятия</a>
     <a href="hotels.html">Отели</a>
     <a href="tour-builder.html">Собрать тур</a>
@@ -290,6 +314,29 @@ function filterTours(city, btn) {
     }
   });
 }
+</script>
+<script>
+const tourDestMap = {
+  riyadh: 'Эр-Рияд',
+  jeddah: 'Джидда',
+  alula: 'Аль-Уля',
+  combined: 'Все города'
+};
+document.querySelectorAll('.tour-card').forEach(card => {
+  const btn = card.querySelector('a.btn-primary');
+  if (!btn) return;
+  const name = card.querySelector('h3')?.textContent.trim() || '';
+  const city = card.dataset.city || '';
+  const priceEl = card.querySelector('[style*="font-size:32px"]');
+  const price = priceEl?.textContent.trim() || '';
+  const dest = name.includes('Умлюдж') ? 'Умлюдж' : (tourDestMap[city] || city);
+  const features = Array.from(card.querySelectorAll('.hotel-tag')).map(t => t.textContent.trim());
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.setItem('ta_selected_tour', JSON.stringify({ name, destination: dest, price, features }));
+    window.location.href = 'tour-builder.html';
+  });
+});
 </script>
 </body>
 </html>

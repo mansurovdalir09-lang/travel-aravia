@@ -2,8 +2,10 @@
 <html lang="ru">
 <head>
   <script>document.documentElement.classList.add('js')</script>
-  <link rel="icon" href="data:,">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <meta charset="UTF-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta name="description" content="Туры в Эр-Рияд — столицу Саудовской Аравии. Достопримечательности, отели, экскурсии и маршруты по Эр-Рияду от Travel Aravia.">
   <meta name="keywords" content="туры в Эр-Рияд, Эр-Рияд Саудовская Аравия, достопримечательности Эр-Рияда, Travel Aravia Эр-Рияд">
   <meta property="og:title" content="Туры в Эр-Рияд — Travel Aravia">
@@ -56,6 +58,19 @@
       .riyadh-gallery-row2 { grid-template-columns: 1fr 1fr !important; }
       .riyadh-video-main > div { flex-direction: column !important; }
       .riyadh-video-row2 { grid-template-columns: 1fr !important; }
+    }
+    /* Gallery spacing from screen edges */
+    @media (max-width: 900px) {
+      .riyadh-gallery-main,
+      .riyadh-gallery-row2 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        overflow: hidden;
+      }
+      .riyadh-gallery-section .container {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+      }
     }
   </style>
 </head>
@@ -142,7 +157,7 @@
     <p class="section-label">Фотографии</p>
     <h2 class="section-title">Эр-Рияд в кадре</h2>
     <!-- Mosaic grid: 1 large + 2 small / 3 equal / 2 tall + 1 -->
-    <div class="riyadh-gallery-main" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:320px 260px;gap:12px;margin-top:48px;">
+    <div class="riyadh-gallery-main" style="display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:320px 260px;gap:12px;margin-top:48px;overflow:hidden;border-radius:4px;">
       <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy"
         style="grid-row:1/3;width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
       <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy"
@@ -155,7 +170,7 @@
         style="width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;">
     </div>
     <!-- Second row -->
-    <div class="riyadh-gallery-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:12px;">
+    <div class="riyadh-gallery-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:12px;overflow:hidden;border-radius:4px;">
       <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy"
         style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;">
       <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy"

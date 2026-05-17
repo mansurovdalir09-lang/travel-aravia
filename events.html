@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>document.documentElement.classList.add('js')</script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <meta charset="UTF-8">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta name="description" content="Мероприятия в Саудовской Аравии 2026 — фестивали, выставки, концерты в Эр-Рияде и других городах. Актуальный календарь событий от Travel Aravia.">
   <meta name="keywords" content="мероприятия Саудовская Аравия 2026, события Эр-Рияд, фестивали КСА, Travel Aravia события">
   <meta property="og:title" content="Мероприятия в Саудовской Аравии 2026 — Travel Aravia">
@@ -24,7 +28,14 @@
     </a>
     <nav class="header__nav">
       <a href="tours.html">Туры</a>
-      <a href="destinations/riyadh.html">Направления</a>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown__trigger">Направления</button>
+        <div class="nav-dropdown__menu">
+          <a href="destinations/riyadh.html">Эр-Рияд</a>
+          <a href="destinations/jeddah.html">Джидда</a>
+          <a href="destinations/al-ula.html">Аль-Уля</a>
+        </div>
+      </div>
       <a href="events.html">Мероприятия</a>
       <a href="hotels.html">Отели</a>
       <a href="tour-builder.html">Собрать тур</a>
@@ -166,14 +177,22 @@
         <a href="hotels.html">Отели</a>
         <a href="tour-builder.html">Собрать тур</a>
       </div>
+      <div class="footer__links">
+        <h4>Документы</h4>
+        <a href="legal.html#offer" style="color:#C4875A;">Публичная оферта</a>
+        <a href="legal.html#privacy" style="color:#C4875A;">Политика персональных данных</a>
+        <a href="legal.html#consent-pd" style="color:#C4875A;">Согласие на обработку ПДн</a>
+      </div>
       <div class="footer__contacts">
         <h4>Контакты</h4>
         <a href="https://www.instagram.com/travelaravia/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://wa.me/79513894443" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://wa.me/79285002070" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="mailto:visit.aravia@gmail.com">visit.aravia@gmail.com</a>
+        <p style="font-size:12px;color:rgba(196,135,90,0.5);margin-top:8px;">г. Махачкала, ул. Ярагского, 71а,<br>Coworking DELO, 2 этаж</p>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Travel Aravia. Все права защищены.</p>
+      <p>© 2026 Travel Aravia. Все права защищены. | <a href="legal.html#offer" style="color:#C4875A;">Оферта</a> | <a href="legal.html#privacy" style="color:#C4875A;">Конфиденциальность</a></p>
     </div>
   </div>
 </footer>
@@ -181,7 +200,12 @@
 <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Навигационное меню" aria-modal="true">
   <nav class="mobile-menu__nav">
     <a href="tours.html">Туры</a>
-    <a href="destinations/riyadh.html">Направления</a>
+    <div class="mobile-menu__group">
+      <span class="mobile-menu__label">Направления</span>
+      <a href="destinations/riyadh.html" class="mobile-menu__sub">Эр-Рияд</a>
+      <a href="destinations/jeddah.html" class="mobile-menu__sub">Джидда</a>
+      <a href="destinations/al-ula.html" class="mobile-menu__sub">Аль-Уля</a>
+    </div>
     <a href="events.html">Мероприятия</a>
     <a href="hotels.html">Отели</a>
     <a href="tour-builder.html">Собрать тур</a>
@@ -203,6 +227,19 @@ function filterEvents(category) {
     }
   });
 }
+</script>
+<script>
+document.querySelectorAll('.event-card').forEach(card => {
+  const btn = card.querySelector('a.btn-primary');
+  if (!btn) return;
+  const name = card.querySelector('h3')?.textContent.trim() || '';
+  const date = card.querySelector('.event-card__date')?.textContent.replace('📅', '').trim() || '';
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    localStorage.setItem('ta_selected_event', JSON.stringify({ name, date }));
+    window.location.href = 'tour-builder.html';
+  });
+});
 </script>
 </body>
 </html>

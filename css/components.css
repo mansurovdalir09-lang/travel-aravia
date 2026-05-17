@@ -58,6 +58,76 @@
   color: var(--color-accent);
 }
 
+/* ── Nav Dropdown ── */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown__trigger {
+  background: none;
+  border: none;
+  color: var(--color-sand);
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.3s;
+  white-space: nowrap;
+}
+
+.nav-dropdown__trigger::after {
+  content: '▾';
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.nav-dropdown__trigger:hover {
+  color: var(--color-accent);
+}
+
+.nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(20,10,5,0.97);
+  border: 1px solid rgba(196,135,90,0.2);
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 160px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 300;
+  backdrop-filter: blur(12px);
+}
+
+.nav-dropdown:hover .nav-dropdown__menu,
+.nav-dropdown:focus-within .nav-dropdown__menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown__menu a {
+  display: block;
+  padding: 10px 16px;
+  color: var(--color-sand);
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.nav-dropdown__menu a:hover {
+  color: var(--color-white);
+  background: rgba(196,135,90,0.12);
+}
+
 .header__actions {
   display: flex;
   align-items: center;
@@ -126,6 +196,25 @@
   color: var(--color-accent);
 }
 
+.mobile-menu__group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.mobile-menu__label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(196,135,90,0.6);
+}
+
+.mobile-menu__nav .mobile-menu__sub {
+  font-size: 26px;
+  color: var(--color-sand);
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .header__nav {
@@ -159,6 +248,18 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Only rotate the portrait hero-trailer on the home page */
+.hero .hero__video {
+  inset: unset;
+  top: 50%;
+  left: 50%;
+  width: 100vh;
+  height: 100vw;
+  transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
+  object-fit: cover;
+  background: #000;
 }
 
 .hero__overlay {
@@ -368,11 +469,11 @@
 
 @media (max-width: 768px) {
   .trust-bar__inner {
-    flex-wrap: wrap;
-    gap: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 16px;
   }
   .trust-bar__divider { display: none; }
-  .trust-bar__item { flex: 1; min-width: 120px; }
 }
 
 .hero__scroll {
@@ -465,8 +566,8 @@
 
 .footer__top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 48px;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 32px;
   margin-bottom: 48px;
 }
 
@@ -480,6 +581,7 @@
   color: var(--color-gray);
   line-height: 1.7;
   max-width: 280px;
+  margin-top: 14px;
 }
 
 .footer__links h4,
@@ -635,7 +737,7 @@
 
 /* ── Services ── */
 .services__header {
-  margin-bottom: 64px;
+  margin-bottom: 48px;
 }
 
 .services__grid {
@@ -726,6 +828,16 @@
   .footer__top {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .footer__links a,
+  .footer__contacts a {
+    font-size: 14px;
+  }
+
+  .footer__links h4,
+  .footer__contacts h4 {
+    font-size: 12px;
   }
 
   .destinations__grid {
@@ -872,4 +984,19 @@
   .builder__steps { grid-template-columns: 1fr; }
   section > .container > div { grid-template-columns: 1fr !important; }
   .destination-option, .hotel-option { grid-template-columns: 1fr !important; }
+
+  /* ЗАДАЧА 2: tour-builder responsive grid */
+  #builderGrid { grid-template-columns: 1fr !important; }
+  .builder__summary { position: static !important; }
+  .destination-option video, .destination-option img { height: 110px !important; }
+  #eventsGrid, #hotelsGrid, #toursGrid { grid-template-columns: 1fr !important; }
+
+  /* ЗАДАЧА 3: Mobile font sizes */
+  .hero__title { font-size: clamp(24px, 7vw, 36px) !important; }
+  .section-title { font-size: clamp(28px, 6vw, 40px) !important; }
+  h1 { font-size: clamp(28px, 7vw, 44px) !important; }
+
+  /* ЗАДАЧА 5: General mobile fixes */
+  .container { padding-left: 16px !important; padding-right: 16px !important; }
+  .hero__actions a { width: 100% !important; text-align: center !important; }
 }
