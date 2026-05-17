@@ -442,7 +442,7 @@
 
 /* ── Trust Bar ── */
 .trust-bar {
-  padding: 40px 0;
+  padding: 64px 0;
   border-bottom: 1px solid rgba(196,135,90,0.12);
 }
 
@@ -463,15 +463,15 @@
 
 .trust-bar__num {
   font-family: var(--font-heading);
-  font-size: 42px;
+  font-size: 56px;
   font-weight: 700;
   color: var(--color-accent);
   line-height: 1;
 }
 
 .trust-bar__item span:last-child {
-  font-size: 12px;
-  letter-spacing: 2px;
+  font-size: 14px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-sand);
   opacity: 0.8;

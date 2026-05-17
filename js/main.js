@@ -66,16 +66,6 @@ document.querySelectorAll('.reveal').forEach(el => {
   });
 })();
 
-// Skip presenter intro on all jeddah.mp4 usages (first 3s show female presenter)
-document.querySelectorAll('video').forEach(vid => {
-  const src = vid.querySelector('source[src*="jeddah"]');
-  if (src) {
-    vid.addEventListener('loadedmetadata', function () {
-      if (this.currentTime < 3) this.currentTime = 3;
-    });
-  }
-});
-
 let sliderIndex = {};
 function slidePhoto(trackId, dir) {
   const track = document.getElementById(trackId);
