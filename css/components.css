@@ -438,7 +438,6 @@
   }
   .hero-search__field { width: 100%; }
   .hero-search__btn { width: 100%; text-align: center; }
-  .hero-search { margin-top: -32px; }
 }
 
 /* ── Trust Bar ── */
@@ -868,9 +867,6 @@
     min-height: 400px;
   }
 
-  .section-title {
-    text-align: left;
-  }
   .events-full__grid { grid-template-columns: 1fr; }
 }
 
