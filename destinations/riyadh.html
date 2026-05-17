@@ -237,42 +237,35 @@
   <div class="container">
     <p class="section-label">Атмосфера города</p>
     <h2 class="section-title">Эр-Рияд в движении</h2>
-    <div class="riyadh-video-main riyadh-videos-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px;">
-      <!-- Main video: evening city -->
-      <video controls muted loop playsinline preload="none"
-        poster="../assets/images/riyadh/riyadh-night.jpg"
-        style="width:100%;height:420px;object-fit:cover;border-radius:20px;display:block;">
-        <source src="../assets/videos/riyadh/riyadh-evening.mp4" type="video/mp4">
+    <!-- Featured video full width -->
+    <video controls muted loop playsinline preload="none"
+      poster="../assets/images/riyadh/riyadh-night.jpg"
+      class="riyadh-vid-featured">
+      <source src="../assets/videos/riyadh/riyadh-evening.mp4" type="video/mp4">
+    </video>
+    <!-- Row 1: 3 equal videos -->
+    <div class="riyadh-vid-row3">
+      <video controls muted controlsList="novolume" loop playsinline preload="none"
+        poster="../assets/images/riyadh/riyadh-metro.jpg">
+        <source src="../assets/videos/riyadh/riyadh-metro.mp4" type="video/mp4">
       </video>
-      <!-- Side videos stacked -->
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <video controls muted controlsList="novolume" loop playsinline preload="none"
-          poster="../assets/images/riyadh/riyadh-metro.jpg"
-          style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;flex:1;">
-          <source src="../assets/videos/riyadh/riyadh-metro.mp4" type="video/mp4">
-        </video>
-        <video controls muted loop playsinline preload="none"
-          poster="../assets/images/riyadh/riyadh-tower-night.jpg"
-          style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;flex:1;">
-          <source src="../assets/videos/riyadh/riyadh-metro-night.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
-    <!-- Second row of videos -->
-    <div class="riyadh-video-row2" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px;">
       <video controls muted loop playsinline preload="none"
-        poster="../assets/images/riyadh/riyadh-aerial.jpg"
-        style="width:100%;height:220px;object-fit:cover;border-radius:20px;display:block;">
+        poster="../assets/images/riyadh/riyadh-tower-night.jpg">
+        <source src="../assets/videos/riyadh/riyadh-metro-night.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline preload="none"
+        poster="../assets/images/riyadh/riyadh-aerial.jpg">
         <source src="../assets/videos/riyadh/riyadh-view.mp4" type="video/mp4">
       </video>
+    </div>
+    <!-- Row 2: 2 equal videos -->
+    <div class="riyadh-vid-row2">
       <video controls muted loop playsinline preload="none"
-        poster="../assets/images/riyadh/riyadh-flag.jpg"
-        style="width:100%;height:220px;object-fit:cover;border-radius:20px;display:block;">
+        poster="../assets/images/riyadh/riyadh-flag.jpg">
         <source src="../assets/videos/riyadh/riyadh-view-3.mp4" type="video/mp4">
       </video>
       <video controls muted controlsList="novolume" loop playsinline preload="none"
-        poster="../assets/images/riyadh/riyadh-skyline.jpg"
-        style="width:100%;height:220px;object-fit:cover;border-radius:20px;display:block;">
+        poster="../assets/images/riyadh/riyadh-skyline.jpg">
         <source src="../assets/videos/riyadh/riyadh-view-2.mp4" type="video/mp4">
       </video>
     </div>

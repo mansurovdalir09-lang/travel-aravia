@@ -815,9 +815,12 @@
   }
 
   .hero__content {
-    padding-top: 80px;
+    padding-top: 100px;
     padding-bottom: 40px;
   }
+
+  /* Hide CTA button in header on mobile — burger must be visible */
+  .header__actions .btn-primary { display: none; }
 
   .hero__subtitle {
     font-size: 16px;
@@ -1065,36 +1068,63 @@
 .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; border: none; padding: 0; transition: background 0.2s; }
 .slider-dot.active { background: var(--color-accent); }
 @media (min-width: 769px) {
+  /* Desktop: grid layout (3 columns, like Jeddah) */
   .riyadh-slider-desktop {
-    margin-left: 40px !important;
-    margin-right: 40px !important;
-    border-radius: 20px;
+    overflow: visible !important;
+    border-radius: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .riyadh-slider-desktop .photo-slider__track {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    transform: none !important;
+    transition: none !important;
+    flex-wrap: unset;
   }
   .riyadh-slider-desktop .photo-slider__track img {
-    height: 480px;
-    object-position: center 40%;
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 340px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 16px;
   }
+  .riyadh-slider-desktop .slider-btn,
+  .riyadh-slider-desktop .slider-dots { display: none !important; }
 }
 @media (max-width: 768px) {
   .photo-slider__track img { height: 260px !important; object-fit: contain !important; background: #1A0F0A; }
 }
 
-/* ЗАДАЧА 6: Riyadh videos grid */
-.riyadh-videos-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-top: 48px;
+/* Riyadh: В движении */
+.riyadh-vid-featured {
+  width: 100%; height: 420px; object-fit: cover;
+  border-radius: 20px; display: block; margin-top: 48px;
 }
-.riyadh-videos-grid video {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  border-radius: 12px;
+.riyadh-vid-row3 {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px; margin-top: 16px;
+}
+.riyadh-vid-row3 video {
+  width: 100%; height: 240px; object-fit: cover;
+  border-radius: 16px; display: block;
+}
+.riyadh-vid-row2 {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-top: 16px;
+}
+.riyadh-vid-row2 video {
+  width: 100%; height: 300px; object-fit: cover;
+  border-radius: 16px; display: block;
 }
 @media (max-width: 768px) {
-  .riyadh-videos-grid { grid-template-columns: 1fr !important; }
-  .riyadh-videos-grid video { height: 200px !important; }
+  .riyadh-vid-featured { height: 220px !important; }
+  .riyadh-vid-row3 { grid-template-columns: 1fr !important; }
+  .riyadh-vid-row3 video { height: 200px !important; }
+  .riyadh-vid-row2 { grid-template-columns: 1fr !important; }
+  .riyadh-vid-row2 video { height: 200px !important; }
 }
 
 /* ЗАДАЧА 10: Footer scroll */
