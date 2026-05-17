@@ -159,25 +159,25 @@
 
 <!-- Photo Gallery -->
 <section class="section" style="background:#120A07;padding:80px 0;">
-  <div class="container" style="padding-left:24px;padding-right:24px;">
+  <div class="container">
     <p class="section-label">Фотографии</p>
     <h2 class="section-title">Эр-Рияд в кадре</h2>
-    <div class="photo-slider" id="riyadhSlider">
-      <div class="photo-slider__track" id="riyadhTrack">
-        <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-tower-night.jpg" alt="Башня ночью" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-night.jpg" alt="Ночной Эр-Рияд" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-king-fahd.jpg" alt="Бизнес-центр Короля Фахда" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-metro.jpg" alt="Метро Эр-Рияда" loading="lazy">
-        <img src="../assets/images/riyadh/riyadh-tower.jpg" alt="Башня Аль-Файсалия" loading="lazy">
-      </div>
-      <button class="slider-btn slider-btn--prev" onclick="slidePhoto('riyadhTrack', -1)" aria-label="Предыдущее фото">&#8592;</button>
-      <button class="slider-btn slider-btn--next" onclick="slidePhoto('riyadhTrack', 1)" aria-label="Следующее фото">&#8594;</button>
-      <div class="slider-dots" id="riyadhDots"></div>
+  </div>
+  <div class="photo-slider riyadh-slider-desktop" id="riyadhSlider" style="margin-top:48px;">
+    <div class="photo-slider__track" id="riyadhTrack">
+      <img src="../assets/images/riyadh/riyadh-skyline.jpg" alt="Горизонт Эр-Рияда" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-aerial.jpg" alt="Аэросъёмка Эр-Рияда" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-tower-night.jpg" alt="Башня ночью" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-night.jpg" alt="Ночной Эр-Рияд" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-king-fahd.jpg" alt="Бизнес-центр Короля Фахда" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-city.jpg" alt="Эр-Рияд" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-flag.jpg" alt="Флаг Саудовской Аравии" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-metro.jpg" alt="Метро Эр-Рияда" loading="lazy">
+      <img src="../assets/images/riyadh/riyadh-tower.jpg" alt="Башня Аль-Файсалия" loading="lazy">
     </div>
+    <button class="slider-btn slider-btn--prev" onclick="slidePhoto('riyadhTrack', -1)" aria-label="Предыдущее фото">&#8592;</button>
+    <button class="slider-btn slider-btn--next" onclick="slidePhoto('riyadhTrack', 1)" aria-label="Следующее фото">&#8594;</button>
+    <div class="slider-dots" id="riyadhDots"></div>
   </div>
 </section>
 
@@ -246,7 +246,7 @@
       </video>
       <!-- Side videos stacked -->
       <div style="display:flex;flex-direction:column;gap:16px;">
-        <video controls muted loop playsinline preload="none"
+        <video controls muted controlsList="novolume" loop playsinline preload="none"
           poster="../assets/images/riyadh/riyadh-metro.jpg"
           style="width:100%;height:200px;object-fit:cover;border-radius:20px;display:block;flex:1;">
           <source src="../assets/videos/riyadh/riyadh-metro.mp4" type="video/mp4">
@@ -268,9 +268,9 @@
       <video controls muted loop playsinline preload="none"
         poster="../assets/images/riyadh/riyadh-flag.jpg"
         style="width:100%;height:220px;object-fit:cover;border-radius:20px;display:block;">
-        <source src="../assets/videos/riyadh/riyadh-heart.mp4" type="video/mp4">
+        <source src="../assets/videos/riyadh/riyadh-view-3.mp4" type="video/mp4">
       </video>
-      <video controls muted loop playsinline preload="none"
+      <video controls muted controlsList="novolume" loop playsinline preload="none"
         poster="../assets/images/riyadh/riyadh-skyline.jpg"
         style="width:100%;height:220px;object-fit:cover;border-radius:20px;display:block;">
         <source src="../assets/videos/riyadh/riyadh-view-2.mp4" type="video/mp4">
