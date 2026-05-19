@@ -1069,9 +1069,10 @@
 .slider-dot.active { background: var(--color-accent); }
 @media (min-width: 769px) {
   .riyadh-slider-desktop .photo-slider__track img {
-    height: 520px !important;
-    object-fit: cover !important;
+    height: 620px !important;
+    object-fit: contain !important;
     object-position: center !important;
+    background: #120A07;
     border-radius: 0;
   }
   .riyadh-slider-desktop .slider-btn { display: flex !important; }

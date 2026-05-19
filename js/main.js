@@ -96,10 +96,26 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// На мобильных отключаем фоновые видео карточек (экономия трафика), но hero-видео оставляем
 if (window.innerWidth < 768) {
-  document.querySelectorAll('.hero__video, .destinations__video').forEach(function(v) {
+  document.querySelectorAll('.destinations__video').forEach(function(v) {
     v.removeAttribute('autoplay');
     v.setAttribute('preload', 'none');
     v.pause();
   });
+  // Hero-видео: пробуем запустить, при блокировке — ждём первого касания
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    heroVideo.setAttribute('preload', 'metadata');
+    heroVideo.muted = true;
+    heroVideo.play().catch(function() {
+      var tryPlay = function() {
+        heroVideo.play().catch(function(){});
+        document.removeEventListener('touchstart', tryPlay);
+        document.removeEventListener('scroll', tryPlay);
+      };
+      document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+      document.addEventListener('scroll', tryPlay, { once: true, passive: true });
+    });
+  }
 }
