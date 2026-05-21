@@ -34,6 +34,10 @@
   transform: translateX(40px);
 }
 
+/* Prevent reveal offset from causing horizontal overflow */
+.footer { overflow-x: hidden; }
+.mobile-menu { overflow: hidden; }
+
 .js .reveal.reveal--scale {
   transform: scale(0.92);
 }

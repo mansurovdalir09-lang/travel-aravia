@@ -615,7 +615,8 @@
   font-size: 14px;
   color: var(--color-sand);
   text-decoration: none;
-  margin-bottom: 12px;
+  padding: 6px 0;
+  margin-bottom: 4px;
   transition: color 0.3s;
 }
 
@@ -719,6 +720,8 @@
   text-decoration: none;
   letter-spacing: 1px;
   transition: opacity 0.3s;
+  display: inline-block;
+  padding: 10px 0;
 }
 
 .destinations__link:hover {
@@ -878,7 +881,8 @@
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(196,135,90,0.3);
   color: var(--color-sand);
-  padding: 10px 24px;
+  padding: 13px 24px;
+  min-height: 44px;
   border-radius: 50px;
   cursor: pointer;
   font-size: 14px;
@@ -1081,7 +1085,7 @@
 .slider-btn--prev { left: 12px; }
 .slider-btn--next { right: 12px; }
 .slider-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
-.slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; border: none; padding: 0; transition: background 0.2s; }
+.slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); cursor: pointer; border: none; padding: 6px; box-sizing: content-box; transition: background 0.2s; }
 .slider-dot.active { background: var(--color-accent); }
 @media (min-width: 769px) {
   .riyadh-slider-desktop .photo-slider__track img {
@@ -1100,8 +1104,8 @@
 
 /* Riyadh: В движении */
 .riyadh-vid-featured {
-  width: 100%; height: 420px; object-fit: cover;
-  border-radius: 20px; display: block; margin-top: 48px;
+  width: 100%; max-width: 100%; height: 420px; object-fit: cover;
+  border-radius: 20px; display: block; margin-top: 48px; box-sizing: border-box;
 }
 .riyadh-vid-row3 {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
