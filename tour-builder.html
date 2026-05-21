@@ -19,15 +19,35 @@
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/components.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     @media (max-width: 768px) {
       #builderGrid { grid-template-columns: 1fr !important; gap: 0 !important; }
       .builder__summary { margin-top: 32px; }
-      #step1 .dest-cards-grid { grid-template-columns: 1fr 1fr !important; }
-      #step2 .date-grid { grid-template-columns: 1fr !important; }
-      #step3 .tour-cards-grid { grid-template-columns: 1fr !important; }
-      #step4 .hotel-cards-grid { grid-template-columns: 1fr !important; }
+      /* Step 1: destination cards — 2 columns on mobile */
+      #step1 .dest-cards-grid { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+      #step1 .destination-option img,
+      #step1 .destination-option video { height: 110px !important; }
+      /* Step 2: dates — single column */
+      #step2 .date-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      /* Step 3: hotel cards — single column */
+      #step3 .hotel-cards-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+      /* Step 4: services — single column on mobile */
+      #step4 > div[style*="grid-template-columns:1fr 1fr"],
+      #step4 > div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 10px !important; }
       #step5 .contact-grid { grid-template-columns: 1fr !important; }
+      /* Step numbers and headers */
+      .builder__step { padding: 20px 0 !important; }
+      .builder__step-header { margin-bottom: 16px !important; }
+      /* Summary panel */
+      .builder__summary { border-radius: 16px !important; margin-bottom: 40px; }
+      /* Page header */
+      .builder__header { padding: 80px 0 40px !important; }
+    }
+    @media (max-width: 420px) {
+      #step1 .dest-cards-grid { grid-template-columns: 1fr !important; }
+      #step1 .destination-option img,
+      #step1 .destination-option video { height: 140px !important; }
     }
   </style>
 </head>
@@ -574,123 +594,82 @@ function downloadPDF() {
     ? tourData.services.map(s => `<li>${s}<\/li>`).join('')
     : '';
 
-  const printWindow = window.open('', '_blank');
-  printWindow.document.write(`<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <title>Маршрут Travel Aravia<\/title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    html,body{background:#1A0F0A!important;color:#E8D5B7;font-family:'Inter',sans-serif;min-height:100vh;}
-    body{padding:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-    .page{max-width:794px;margin:0 auto;padding:48px 52px;background:#1A0F0A;}
-    /* HEADER */
-    .hdr{text-align:center;padding-bottom:36px;margin-bottom:40px;position:relative;}
-    .hdr::after{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,#C4875A,transparent);margin-top:28px;}
-    .hdr-logo{font-family:'Cormorant Garant',serif;font-size:42px;font-weight:700;color:#C4875A;letter-spacing:5px;text-transform:uppercase;}
-    .hdr-sub{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(196,135,90,0.6);margin-top:4px;}
-    .hdr-divider{display:flex;align-items:center;gap:12px;margin:20px auto 0;width:fit-content;}
-    .hdr-diamond{width:6px;height:6px;background:#C4875A;transform:rotate(45deg);}
-    .hdr-line{width:60px;height:1px;background:rgba(196,135,90,0.4);}
-    /* TITLE BANNER */
-    .title-banner{background:linear-gradient(135deg,rgba(92,45,26,0.6) 0%,rgba(196,135,90,0.2) 100%);border:1px solid rgba(196,135,90,0.3);border-radius:16px;padding:28px 36px;margin-bottom:36px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
-    .title-banner h1{font-family:'Cormorant Garant',serif;font-size:32px;font-weight:700;color:#fff;line-height:1.2;}
-    .title-banner .dest{font-family:'Cormorant Garant',serif;font-size:22px;color:#C4875A;font-style:italic;margin-top:4px;}
-    .price-badge{background:linear-gradient(135deg,#5C2D1A,#C4875A);border-radius:12px;padding:16px 24px;text-align:center;flex-shrink:0;}
-    .price-badge .from{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7);}
-    .price-badge .amount{font-family:'Cormorant Garant',serif;font-size:28px;font-weight:700;color:#fff;line-height:1;}
-    /* SECTION */
-    .section{margin-bottom:32px;}
-    .section-title{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4875A;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-    .section-title::after{content:'';flex:1;height:1px;background:rgba(196,135,90,0.25);}
-    /* ROWS */
-    .row{display:flex;justify-content:space-between;align-items:center;padding:13px 18px;background:rgba(255,255,255,0.03);border:1px solid rgba(196,135,90,0.12);border-radius:10px;margin-bottom:6px;}
-    .row-label{color:rgba(196,135,90,0.75);font-size:13px;}
-    .row-value{color:#fff;font-weight:500;font-size:14px;text-align:right;max-width:55%;}
-    .row-value.accent{color:#C4875A;font-family:'Cormorant Garant',serif;font-size:17px;}
-    /* SERVICES */
-    .services-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-    .svc{padding:10px 14px;background:rgba(196,135,90,0.08);border:1px solid rgba(196,135,90,0.2);border-radius:8px;font-size:13px;color:#E8D5B7;display:flex;align-items:center;gap:8px;}
-    .svc::before{content:'✦';color:#C4875A;font-size:10px;flex-shrink:0;}
-    /* QUOTE */
-    .quote{text-align:center;padding:28px;margin:32px 0;border-top:1px solid rgba(196,135,90,0.2);border-bottom:1px solid rgba(196,135,90,0.2);}
-    .quote p{font-family:'Cormorant Garant',serif;font-style:italic;font-size:19px;color:rgba(232,213,183,0.8);line-height:1.6;}
-    /* FOOTER */
-    .footer{margin-top:36px;padding-top:24px;border-top:1px solid rgba(196,135,90,0.25);display:flex;justify-content:space-between;align-items:flex-end;gap:20px;}
-    .footer-left p{font-size:11px;color:rgba(196,135,90,0.5);line-height:1.8;}
-    .footer-logo{font-family:'Cormorant Garant',serif;font-size:22px;color:#C4875A;letter-spacing:3px;}
-    .footer-right{text-align:right;}
-    .footer-right p{font-size:11px;color:rgba(196,135,90,0.5);line-height:1.8;}
-    @media print{
-      html,body{background:#1A0F0A!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
-      .page{padding:32px 40px;}
-      @page{margin:8mm;size:A4;}
-    }
-  <\/style>
-<\/head>
-<body>
-<div class="page">
+  const dlBtn = document.querySelector('button[onclick="downloadPDF()"]');
+  const origBtnHtml = dlBtn ? dlBtn.innerHTML : '';
+  if (dlBtn) { dlBtn.innerHTML = '⏳ Создаём PDF…'; dlBtn.disabled = true; }
 
-  <div class="hdr">
-    <div class="hdr-logo">Travel Aravia<\/div>
-    <div class="hdr-sub">Ваш персональный маршрут<\/div>
-    <div class="hdr-divider"><div class="hdr-line"><\/div><div class="hdr-diamond"><\/div><div class="hdr-line"><\/div><\/div>
-  <\/div>
+  function pdfRow(label, value, accent) {
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(196,135,90,0.15);border-radius:8px;margin-bottom:5px;"><span style="color:rgba(196,135,90,0.8);font-size:13px;flex-shrink:0;">${label}</span><span style="color:${accent ? '#C4875A' : '#fff'};font-size:${accent ? '15px' : '13px'};text-align:right;max-width:58%;word-break:break-word;">${value}</span></div>`;
+  }
 
-  <div class="title-banner">
-    <div>
-      <h1>${tourData.preTour || 'Индивидуальный маршрут'}<\/h1>
-      <div class="dest">${tourData.destination || tourData.preHotelDest || 'Саудовская Аравия'}<\/div>
-    <\/div>
-    ${tourData.preTourPrice ? `<div class="price-badge"><div class="from">от<\/div><div class="amount">${tourData.preTourPrice}<\/div><\/div>` : ''}
-  <\/div>
+  const svcItems = tourData.services.length
+    ? tourData.services.map(s => `<div style="padding:9px 12px;background:rgba(196,135,90,0.08);border:1px solid rgba(196,135,90,0.2);border-radius:8px;font-size:12px;color:#E8D5B7;">✦ ${s}</div>`).join('')
+    : '';
 
-  <div class="section">
-    <div class="section-title">Детали поездки<\/div>
-    ${tourData.preTour ? `<div class="row"><span class="row-label">🗺️ Тур<\/span><span class="row-value accent">${tourData.preTour}<\/span><\/div>` : ''}
-    ${tourData.preTourPrice ? `<div class="row"><span class="row-label">💰 Стоимость<\/span><span class="row-value accent">${tourData.preTourPrice} за человека<\/span><\/div>` : ''}
-    ${tourData.preTourFeatures && tourData.preTourFeatures.length ? `<div class="row"><span class="row-label">✅ Включено<\/span><span class="row-value">${tourData.preTourFeatures.join(' · ')}<\/span><\/div>` : ''}
-    ${tourData.preHotel ? `<div class="row"><span class="row-label">🏨 Отель<\/span><span class="row-value">${tourData.preHotel}<\/span><\/div>` : ''}
-    ${tourData.preEvent ? `<div class="row"><span class="row-label">🎉 Мероприятие<\/span><span class="row-value">${tourData.preEvent}<\/span><\/div>` : ''}
-    ${tourData.preEventDate ? `<div class="row"><span class="row-label">📅 Дата события<\/span><span class="row-value">${tourData.preEventDate}<\/span><\/div>` : ''}
-    ${tourData.destination ? `<div class="row"><span class="row-label">📍 Направление<\/span><span class="row-value accent">${tourData.destination}<\/span><\/div>` : ''}
-    ${tourData.dateFrom ? `<div class="row"><span class="row-label">📅 Дата выезда<\/span><span class="row-value">${new Date(tourData.dateFrom).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}<\/span><\/div>` : ''}
-    ${tourData.dateTo ? `<div class="row"><span class="row-label">📅 Дата возврата<\/span><span class="row-value">${new Date(tourData.dateTo).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})}<\/span><\/div>` : ''}
-    ${tourData.days ? `<div class="row"><span class="row-label">🌙 Ночей<\/span><span class="row-value">${tourData.days}<\/span><\/div>` : ''}
-    <div class="row"><span class="row-label">👥 Туристов<\/span><span class="row-value">${tourData.tourists}<\/span><\/div>
-    ${tourData.hotel ? `<div class="row"><span class="row-label">🏨 Категория отеля<\/span><span class="row-value">${tourData.hotel}<\/span><\/div>` : ''}
-  <\/div>
+  const pdfEl = document.createElement('div');
+  pdfEl.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#1A0F0A;font-family:Inter,sans-serif;color:#E8D5B7;';
+  pdfEl.innerHTML = `<div style="padding:44px 52px;background:#1A0F0A;min-height:1123px;box-sizing:border-box;">
+    <div style="text-align:center;padding-bottom:24px;margin-bottom:28px;border-bottom:1px solid rgba(196,135,90,0.3);">
+      <div style="font-size:36px;font-weight:700;color:#C4875A;letter-spacing:5px;text-transform:uppercase;font-family:'Cormorant Garant',Georgia,serif;">Travel Aravia</div>
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(196,135,90,0.55);margin-top:6px;">Ваш персональный маршрут</div>
+    </div>
+    <div style="background:linear-gradient(135deg,rgba(92,45,26,0.55),rgba(196,135,90,0.12));border:1px solid rgba(196,135,90,0.3);border-radius:14px;padding:22px 28px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;">
+      <div>
+        <div style="font-family:'Cormorant Garant',Georgia,serif;font-size:26px;font-weight:700;color:#fff;">${tourData.preTour || 'Индивидуальный маршрут'}</div>
+        <div style="font-family:'Cormorant Garant',Georgia,serif;font-size:18px;color:#C4875A;font-style:italic;margin-top:3px;">${tourData.destination || tourData.preHotelDest || 'Саудовская Аравия'}</div>
+      </div>
+      ${tourData.preTourPrice ? `<div style="background:linear-gradient(135deg,#5C2D1A,#C4875A);border-radius:10px;padding:12px 18px;text-align:center;flex-shrink:0;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.65);">от</div><div style="font-family:'Cormorant Garant',Georgia,serif;font-size:22px;font-weight:700;color:#fff;">${tourData.preTourPrice}</div></div>` : ''}
+    </div>
+    <div style="margin-bottom:20px;">
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4875A;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(196,135,90,0.2);">Детали поездки</div>
+      ${tourData.preTour ? pdfRow('🗺️ Тур', tourData.preTour, true) : ''}
+      ${tourData.preTourPrice ? pdfRow('💰 Стоимость', tourData.preTourPrice + ' за человека', true) : ''}
+      ${tourData.preTourFeatures && tourData.preTourFeatures.length ? pdfRow('✅ Включено', tourData.preTourFeatures.join(' · ')) : ''}
+      ${tourData.preHotel ? pdfRow('🏨 Отель', tourData.preHotel) : ''}
+      ${tourData.preEvent ? pdfRow('🎉 Мероприятие', tourData.preEvent) : ''}
+      ${tourData.preEventDate ? pdfRow('📅 Дата события', tourData.preEventDate) : ''}
+      ${tourData.destination ? pdfRow('📍 Направление', tourData.destination, true) : ''}
+      ${tourData.dateFrom ? pdfRow('📅 Дата выезда', new Date(tourData.dateFrom).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})) : ''}
+      ${tourData.dateTo ? pdfRow('📅 Дата возврата', new Date(tourData.dateTo).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})) : ''}
+      ${tourData.days ? pdfRow('🌙 Ночей', String(tourData.days)) : ''}
+      ${pdfRow('👥 Туристов', String(tourData.tourists))}
+      ${tourData.hotel ? pdfRow('🏨 Категория', tourData.hotel) : ''}
+    </div>
+    ${svcItems ? `<div style="margin-bottom:20px;"><div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4875A;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(196,135,90,0.2);">Включённые услуги</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;">${svcItems}</div></div>` : ''}
+    <div style="margin-bottom:20px;">
+      <div style="font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C4875A;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(196,135,90,0.2);">Контактные данные</div>
+      ${pdfRow('👤 Имя', name)}
+      ${phone ? pdfRow('📞 WhatsApp', phone) : ''}
+      ${wish ? pdfRow('💬 Пожелания', wish) : ''}
+    </div>
+    <div style="text-align:center;padding:20px;margin:20px 0;border-top:1px solid rgba(196,135,90,0.2);border-bottom:1px solid rgba(196,135,90,0.2);">
+      <div style="font-family:'Cormorant Garant',Georgia,serif;font-style:italic;font-size:17px;color:rgba(232,213,183,0.75);line-height:1.65;">Ваше путешествие в Саудовскую Аравию уже начинается —<br>мы возьмём на себя каждую деталь вашего маршрута.</div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:18px;border-top:1px solid rgba(196,135,90,0.2);">
+      <div>
+        <div style="font-family:'Cormorant Garant',Georgia,serif;font-size:20px;color:#C4875A;letter-spacing:3px;">Travel Aravia</div>
+        <div style="font-size:11px;color:rgba(196,135,90,0.5);margin-top:4px;line-height:1.8;">Надёжные проводники по Саудовской Аравии<br>для русскоговорящих путешественников</div>
+      </div>
+      <div style="text-align:right;font-size:11px;color:rgba(196,135,90,0.5);line-height:1.8;">
+        @travelaravia<br>+7 928-500-20-70<br>visit.aravia@gmail.com
+      </div>
+    </div>
+  </div>`;
+  document.body.appendChild(pdfEl);
 
-  ${servicesHTML ? `<div class="section"><div class="section-title">Включённые услуги<\/div><div class="services-grid">${tourData.services.map(s=>`<div class="svc">${s}<\/div>`).join('')}<\/div><\/div>` : ''}
-
-  <div class="section">
-    <div class="section-title">Контактные данные<\/div>
-    <div class="row"><span class="row-label">👤 Имя<\/span><span class="row-value">${name}<\/span><\/div>
-    ${phone ? `<div class="row"><span class="row-label">📞 WhatsApp<\/span><span class="row-value">${phone}<\/span><\/div>` : ''}
-    ${wish ? `<div class="row"><span class="row-label">💬 Пожелания<\/span><span class="row-value">${wish}<\/span><\/div>` : ''}
-  <\/div>
-
-  <div class="quote">
-    <p>Ваше путешествие в Саудовскую Аравию уже начинается —<br>мы возьмём на себя каждую деталь вашего маршрута.<\/p>
-  <\/div>
-
-  <div class="footer">
-    <div class="footer-left">
-      <div class="footer-logo">Travel Aravia<\/div>
-      <p>Надёжные проводники по Саудовской Аравии<br>для русскоговорящих путешественников<\/p>
-    <\/div>
-    <div class="footer-right">
-      <p>📸 @travelaravia<br>📞 +7 928-500-20-70<br>✉️ visit.aravia@gmail.com<\/p>
-    <\/div>
-  <\/div>
-
-<\/div>
-<script>window.onload=function(){setTimeout(function(){window.print();},600);}<\/script>
-<\/body><\/html>`);
-  printWindow.document.close();
-  printWindow.document.close();
+  window.html2pdf().set({
+    margin: 0,
+    filename: 'Travel_Aravia_маршрут.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#1A0F0A', logging: false },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).from(pdfEl).save().then(function() {
+    pdfEl.remove();
+    if (dlBtn) { dlBtn.innerHTML = origBtnHtml; dlBtn.disabled = false; }
+  }).catch(function() {
+    pdfEl.remove();
+    if (dlBtn) { dlBtn.innerHTML = origBtnHtml; dlBtn.disabled = false; }
+  });
 
   // Send tour summary to client via WhatsApp
   setTimeout(() => {

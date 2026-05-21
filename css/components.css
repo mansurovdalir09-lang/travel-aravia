@@ -815,8 +815,8 @@
   }
 
   .hero__content {
-    padding-top: 130px;
-    padding-bottom: 40px;
+    padding-top: 90px;
+    padding-bottom: 90px;
   }
 
   /* Hide CTA button in header on mobile — burger must be visible */
@@ -1035,6 +1035,22 @@
 
   /* Riyadh hero mobile: portrait video centered */
   #riyadhHeroVideo { left: 50% !important; width: auto !important; height: 100% !important; transform: translateX(-50%) !important; object-fit: cover !important; }
+
+  /* Destination hero height on mobile — smaller than 100vh */
+  .dest-hero, .riyadh-hero, .jeddah-hero {
+    height: 85vh !important;
+    min-height: 480px !important;
+  }
+  /* Equal top/bottom padding in destination hero content */
+  .dest-hero .container,
+  .riyadh-hero .container,
+  .jeddah-hero .container {
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* Remove last 2 Riyadh videos on mobile */
+  .riyadh-vid-row2 { display: none !important; }
 
   /* CTA blocks centering */
   .section-title { text-align: center !important; }
