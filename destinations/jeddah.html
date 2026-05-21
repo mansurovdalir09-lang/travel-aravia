@@ -26,15 +26,17 @@
       }
       .jeddah-gallery-grid img { height: 240px !important; }
     }
+    .jeddah-hero { height: 100vh; height: 100dvh; }
     @media (max-width: 768px) {
       .jeddah-about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
       .jeddah-hero {
-        height: 85vh !important;
-        min-height: 480px !important;
+        height: 85vh;
+        height: 85dvh;
+        min-height: 480px;
       }
       .jeddah-hero .container {
-        padding-top: 80px !important;
-        padding-bottom: 60px !important;
+        padding-top: 80px;
+        padding-bottom: 60px;
       }
     }
   </style>
@@ -71,7 +73,7 @@
 </header>
 
 <main id="main-content">
-<section class="jeddah-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;padding-bottom:0;">
+<section class="jeddah-hero" style="position:relative;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;padding-bottom:0;">
   <!-- Jeddah hero video (horizontal) -->
   <div style="position:absolute;inset:0;z-index:0;overflow:hidden;">
     <video autoplay muted loop playsinline poster="../assets/images/jeddah/jeddah-aerial.png"

@@ -78,17 +78,19 @@
         padding-right: 12px !important;
       }
     }
-    /* Mobile: reduce hero height and hide last 2 videos */
+    /* Hero height: desktop full, mobile reduced */
+    .riyadh-hero { height: 100vh; height: 100dvh; }
     @media (max-width: 768px) {
       .riyadh-hero {
-        height: 85vh !important;
-        min-height: 480px !important;
+        height: 85vh;
+        height: 85dvh;
+        min-height: 480px;
       }
       .riyadh-hero .container {
-        padding-top: 80px !important;
-        padding-bottom: 60px !important;
+        padding-top: 80px;
+        padding-bottom: 60px;
       }
-      .riyadh-vid-row2 { display: none !important; }
+      .riyadh-vid-row2 { display: none; }
     }
   </style>
 </head>
@@ -124,7 +126,7 @@
 </header>
 
 <main id="main-content">
-<section class="dest-hero riyadh-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
+<section class="dest-hero riyadh-hero" style="position:relative;display:flex;align-items:center;overflow:hidden;background:#1A0F0A;">
   <!-- Portrait Instagram video rotated to landscape fill -->
   <video autoplay muted loop playsinline id="riyadhHeroVideo" style="z-index:0;pointer-events:none;">
     <source src="../assets/videos/riyadh/riyadh-hero.mp4" type="video/mp4">

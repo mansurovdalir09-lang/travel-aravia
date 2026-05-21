@@ -38,16 +38,18 @@
       .al-ula-gallery-main img { height: 200px !important; }
       .al-ula-gallery-row2 { grid-template-columns: 1fr 1fr !important; }
     }
+    .dest-hero { height: 100vh; height: 100dvh; }
     @media (max-width: 768px) {
       .al-ula-about-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
       .section-title { text-align: center !important; }
       .dest-hero {
-        height: 85vh !important;
-        min-height: 480px !important;
+        height: 85vh;
+        height: 85dvh;
+        min-height: 480px;
       }
       .dest-hero .container {
-        padding-top: 80px !important;
-        padding-bottom: 60px !important;
+        padding-top: 80px;
+        padding-bottom: 60px;
       }
     }
   </style>
@@ -84,7 +86,7 @@
 </header>
 
 <main id="main-content">
-<section class="dest-hero" style="position:relative;height:100vh;display:flex;align-items:center;overflow:hidden;">
+<section class="dest-hero" style="position:relative;display:flex;align-items:center;overflow:hidden;">
   <video class="hero__video" id="heroVideo" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
     <source src="../assets/videos/al-ula.mp4" type="video/mp4">
   </video>
